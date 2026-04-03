@@ -3,54 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAZ Visa Export - Founder Abhishek Ahirwar</title>
+    <title>AAZ Visa Export - Global Travel Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #daa520; --navy: #001f3f; --white: #ffffff; }
-        body { font-family: 'Poppins', sans-serif; background: #f4f4f4; margin: 0; padding: 0; overflow-x: hidden; }
+        :root { --gold: #daa520; --navy: #001f3f; --accent: #ffcc00; }
+        body { font-family: 'Poppins', sans-serif; background: #f4f7f6; margin: 0; padding: 0; overflow-x: hidden; }
 
-        /* Floating WhatsApp Button */
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 35px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 3000; line-height: 60px; }
+        /* Floating WhatsApp Button (Side) */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 35px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 5000; }
 
-        /* Header Fix */
-        header { background: var(--white); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); sticky; top:0; z-index: 2000; }
+        /* Top Header with WhatsApp, Gmail & Call */
+        header { background: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); sticky; top:0; z-index: 4000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .logo-box { display: flex; align-items: center; gap: 10px; }
-        .logo-img { width: 60px; mix-blend-mode: multiply; }
-        .contact-top { text-align: right; font-size: 12px; font-weight: bold; }
+        .logo-img { width: 70px; mix-blend-mode: multiply; }
+        .contact-top-bar { text-align: right; font-size: 11px; font-weight: bold; line-height: 1.4; }
+        .whatsapp-top-btn { background: #25d366; color: white; padding: 5px 12px; border-radius: 20px; text-decoration: none; font-size: 12px; display: inline-block; margin-bottom: 5px; }
 
-        /* Celebrity Slider (Banner) */
-        .slider { width: 100%; height: 450px; position: relative; overflow: hidden; background: #000; }
-        .slides { width: 500%; height: 450px; display: flex; animation: slideAnim 20s infinite; }
-        .slides img { width: 20%; height: 450px; object-fit: cover; opacity: 0.8; }
+        /* CELEBRITY & FAMOUS PLACES SLIDER */
+        .main-slider { width: 100%; height: 500px; position: relative; overflow: hidden; background: #000; }
+        .slides { display: flex; width: 800%; height: 100%; animation: slideShow 35s infinite; }
+        .slide { width: 12.5%; height: 100%; position: relative; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
         
-        @keyframes slideAnim {
-            0% { margin-left: 0; }
-            20% { margin-left: 0; }
-            25% { margin-left: -100%; }
-            45% { margin-left: -100%; }
-            50% { margin-left: -200%; }
-            70% { margin-left: -200%; }
-            75% { margin-left: -300%; }
-            95% { margin-left: -300%; }
-            100% { margin-left: -400%; }
+        @keyframes slideShow {
+            0%, 10% { transform: translateX(0%); }
+            12.5%, 22.5% { transform: translateX(-12.5%); }
+            25%, 35% { transform: translateX(-25%); }
+            37.5%, 47.5% { transform: translateX(-37.5%); }
+            50%, 60% { transform: translateX(-50%); }
+            62.5%, 72.5% { transform: translateX(-62.5%); }
+            75%, 85% { transform: translateX(-75%); }
+            87.5%, 100% { transform: translateX(-87.5%); }
         }
 
-        /* Hero Overlay Details */
-        .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 90%; }
-        .founder-pic { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 20px rgba(218,165,32,0.7); margin-bottom: 10px; }
-        .hero-text h1 { font-size: 32px; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,1); }
+        .hero-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 90%; }
+        .founder-img { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 30px rgba(255,204,0,0.5); margin-bottom: 15px; }
 
-        /* Service Cards */
-        .container { padding: 30px 15px; max-width: 1200px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-bottom: 5px solid var(--gold); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-content { padding: 20px; text-align: center; }
-        .btn-book { background: var(--navy); color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; width: 100%; }
+        /* BOXES GRID */
+        .container { padding: 40px 20px; max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; color: var(--navy); margin-bottom: 40px; font-size: 28px; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px; width: 100%; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .service-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: 0.4s; border: 1px solid #eee; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .service-card img { width: 100%; height: 180px; object-fit: cover; }
+        .card-body { padding: 20px; text-align: center; }
+        .card-body h3 { margin: 0 0 10px; color: var(--navy); font-size: 20px; }
+        .btn-action { background: var(--gold); color: black; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-        /* Modal Form */
-        .modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
-        .modal-box { background: white; width: 90%; max-width: 450px; margin: 50px auto; padding: 30px; border-radius: 20px; }
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 9000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
+        .modal-box { background: white; width: 90%; max-width: 400px; margin: 80px auto; padding: 30px; border-radius: 25px; }
         input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; }
 
         footer { background: var(--navy); color: white; padding: 40px 20px; text-align: center; }
@@ -58,106 +61,149 @@
 </head>
 <body>
 
-<a href="https://wa.me/918818852109" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/918818852109" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
 <header>
     <div class="logo-box">
         <img src="1000070395.webp" class="logo-img">
-        <span style="font-weight:bold; color:var(--navy);">AAZ VISA EXPORT</span>
+        <span style="font-weight:900; color:var(--navy); font-size:18px;">AAZ VISA EXPORT</span>
     </div>
-    <div class="contact-top">
-        <i class="fas fa-phone"></i> +91 8818852109<br>
-        <i class="fas fa-envelope"></i> info.aazvisa@gmail.com
+    <div class="contact-top-bar">
+        <a href="https://wa.me/918818852109" class="whatsapp-top-btn"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a><br>
+        <i class="fas fa-phone-alt" style="color:var(--gold);"></i> +91 8818852109<br>
+        <i class="fas fa-envelope" style="color:var(--gold);"></i> info.aazvisa@gmail.com
     </div>
 </header>
 
-<div class="slider">
+<div class="main-slider">
     <div class="slides">
-        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200" alt="Cricket Stadium">
-        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?q=80&w=1200" alt="Airlines">
-        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200" alt="Luxury Beach">
-        <img src="https://images.unsplash.com/photo-1514539079130-25950c84af65?q=80&w=1200" alt="Europe City">
-        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1200" alt="Celebrity Style Travel">
+        <div class="slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1200" alt="Taj Mahal"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200" alt="Dubai Burj Khalifa"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" alt="Paris France"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1200" alt="Rome Italy"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200" alt="Famous Celebrities Stadium"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200" alt="USA Times Square"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1524492459584-96c6dd59f914?q=80&w=1200" alt="India Gate"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1200" alt="Luxury Holiday"></div>
     </div>
     
-    <div class="hero-text">
-        <img src="1000070399.webp" class="founder-pic">
-        <h1>Abhishek Ahirwar</h1>
-        <p>Founder & CEO - AAZ Visa Export</p>
-        <p style="background:var(--gold); display:inline-block; padding:5px 15px; border-radius:20px; color:black; font-weight:bold;">Toll Free: +91 8818852109</p>
+    <div class="hero-overlay">
+        <img src="1000070399.webp" class="founder-img">
+        <h1 style="margin:5px 0; font-size:35px; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);">Abhishek Ahirwar</h1>
+        <p style="font-weight:bold; letter-spacing:1px; background:rgba(0,0,0,0.5); display:inline-block; padding:5px 15px;">FOUNDER & CEO</p>
     </div>
 </div>
 
 <div class="container">
-    <h2 style="text-align:center; color:var(--navy); margin-bottom:30px;">Premium Visa Services</h2>
+    <h2 class="section-title">Our Specialist Services</h2>
     <div class="grid">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1523050853064-500e318fb999?q=80&w=600" alt="University Campus">
-            <div class="card-content">
-                <h3>Study Visa (University)</h3>
-                <p>Top International Universities in Poland, Italy, UK & Europe.</p>
-                <button class="btn-book" onclick="openReg('Study Visa')">Apply Now</button>
+        
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600" alt="Work Visa">
+            <div class="card-body">
+                <h3 style="color:#d32f2f;">Work Permit Visa</h3>
+                <p>Global employment opportunities with legal work permits.</p>
+                <button class="btn-action" onclick="openModal('Work Permit')">Apply Now</button>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600" alt="Tourism">
-            <div class="card-content">
-                <h3>Tourist & Visit Visa</h3>
-                <p>Thailand, Dubai, Malaysia & Schengen. Fast approval.</p>
-                <button class="btn-book" onclick="openReg('Tourist Visa')">Apply Now</button>
+        <div class="service-card" style="border: 2px solid var(--gold);">
+            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=600" alt="Europe Specialist">
+            <div class="card-body">
+                <h3>Euro Specialist</h3>
+                <p>Expert in Poland, Italy, Malta, & Schengen Visas.</p>
+                <button class="btn-action" onclick="openModal('Euro Specialist')">Get Details</button>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=600" alt="Business Meeting">
-            <div class="card-content">
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=600" alt="University">
+            <div class="card-body">
+                <h3>Global Study Visa</h3>
+                <p>Admissions in top International Universities.</p>
+                <button class="btn-action" onclick="openModal('Study Visa')">Consult Now</button>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600" alt="Visit Visa">
+            <div class="card-body">
+                <h3>Visit & Tourist Visa</h3>
+                <p>Explore Dubai, Thailand, & Europe with ease.</p>
+                <button class="btn-book btn-action" onclick="openModal('Visit/Tourist Visa')">Book Now</button>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=600" alt="Business Visa">
+            <div class="card-body">
                 <h3>Business Visa</h3>
-                <p>Grow your trade globally with our professional visa support.</p>
-                <button class="btn-book" onclick="openReg('Business Visa')">Apply Now</button>
+                <p>Grow your trade across international borders.</p>
+                <button class="btn-action" onclick="openModal('Business Visa')">Apply Now</button>
             </div>
         </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?q=80&w=600" alt="Flights">
+            <div class="card-body">
+                <h3>Flight Booking</h3>
+                <p>Cheapest domestic & international flight tickets.</p>
+                <button class="btn-action" onclick="openModal('Flight Booking')">Enquire Now</button>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1454165833762-0265129b0021?q=80&w=600" alt="Insurance">
+            <div class="card-body">
+                <h3>Travel Insurance</h3>
+                <p>Secure your journey with global medical coverage.</p>
+                <button class="btn-action" onclick="openModal('Travel Insurance')">Get Covered</button>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<div id="regModal" class="modal">
+<div id="bookingModal" class="modal">
     <div class="modal-box">
-        <h3 id="formTitle" style="text-align:center; color:var(--navy);">Booking Registration</h3>
+        <h3 id="modalTitle" style="text-align:center; color:var(--navy);">Booking Registration</h3>
         <form action="https://formspree.io/f/meeprqpk" method="POST">
-            <input type="hidden" name="service" id="service_input">
-            <input type="text" name="name" placeholder="Aapka Naam" required>
-            <input type="tel" name="phone" placeholder="WhatsApp Number" required>
-            <select name="country" required>
+            <input type="hidden" name="Service" id="service_hidden">
+            <input type="text" name="Full_Name" placeholder="Aapka Pura Naam" required>
+            <input type="tel" name="WhatsApp_Number" placeholder="WhatsApp No. (+91...)" required>
+            <select name="Destination_Country" required>
                 <option value="">Select Country</option>
                 <option value="Poland">Poland</option>
                 <option value="Italy">Italy</option>
                 <option value="Dubai">Dubai</option>
-                <option value="USA/UK">USA / UK</option>
-                <option value="Other">Other</option>
+                <option value="Thailand">Thailand</option>
+                <option value="USA/Canada/UK">USA / Canada / UK</option>
+                <option value="Schengen">Other Schengen Europe</option>
             </select>
-            <button type="submit" style="background:var(--gold); color:black; font-weight:bold; width:100%; padding:15px; border:none; border-radius:10px; cursor:pointer;">CONFIRM BOOKING</button>
-            <p onclick="closeReg()" style="text-align:center; color:red; cursor:pointer; margin-top:10px;">Close</p>
+            <button type="submit" class="btn-action" style="background:var(--navy); color:white; margin-top:10px;">SUBMIT REQUEST</button>
+            <p onclick="closeModal()" style="text-align:center; color:red; cursor:pointer; margin-top:15px; font-weight:bold;">Close (X)</p>
         </form>
     </div>
 </div>
 
 <footer>
-    <p><b>AAZ VISA EXPORT</b></p>
+    <p style="font-weight:bold; font-size:20px; color:var(--gold);">AAZ VISA EXPORT</p>
     <p>Contact: +91 8818852109 | Email: info.aazvisa@gmail.com</p>
     <div style="font-size:30px; margin:20px 0;">
-        <a href="https://wa.me/918818852109" style="color:var(--gold); margin:0 10px;"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/aaz.visa_export" style="color:var(--gold); margin:0 10px;"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/918818852109" style="color:var(--gold); margin:0 15px;"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/aaz.visa_export" style="color:var(--gold); margin:0 15px;"><i class="fab fa-instagram"></i></a>
     </div>
-    <p>© 2026 AAZ Visa Export. All Rights Reserved.</p>
+    <p>© 2026 Abhishek Ahirwar - Trusted Visa Expert.</p>
 </footer>
 
 <script>
-    function openReg(val) {
-        document.getElementById('regModal').style.display = 'block';
-        document.getElementById('service_input').value = val;
+    function openModal(val) {
+        document.getElementById('bookingModal').style.display = 'block';
+        document.getElementById('modalTitle').innerText = val;
+        document.getElementById('service_hidden').value = val;
     }
-    function closeReg() {
-        document.getElementById('regModal').style.display = 'none';
+    function closeModal() {
+        document.getElementById('bookingModal').style.display = 'none';
     }
 </script>
 
