@@ -93,68 +93,191 @@
         <p style="font-weight:bold; letter-spacing:1px; background:rgba(0,0,0,0.5); display:inline-block; padding:5px 15px;">FOUNDER & CEO</p>
     </div>
 </div>
-<div class="container">
-    <h2 class="section-title">Our Specialist Services</h2>
-    <div class="grid">
-        
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600" alt="Work Visa">
-            <div class="card-body">
-                <h3 style="color:#d32f2f;">Work Permit Visa</h3>
-                <p>Global employment opportunities with legal work permits.</p>
-                <button class="btn-action" onclick="openModal('Work Permit')">Apply Now</button>
+    <div class="container">
+        <h2 class="section-title">Hamari Specialist Services</h2>
+        <div class="grid">
+            
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600" alt="Work Visa">
+                <div class="card-body">
+                    <h3>Work Permit Visa</h3>
+                    <p>Global employment opportunities with legal work permits.</p>
+                    <button class="btn-action" onclick="openModal('Work Permit')">Apply Now</button>
+                </div>
             </div>
-        </div>
 
-        <div class="service-card" style="border: 2px solid #b8860b;">
-            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=600" alt="Europe Specialist">
-            <div class="card-body">
-                <h3>Euro Specialist</h3>
-                <p>Expert in Poland, Italy, Malta, & Schengen Visas.</p>
-                <button class="btn-action" onclick="openModal('Euro Specialist')">Get Details</button>
+            <div class="service-card" style="border: 2px solid var(--gold);">
+                <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=600" alt="Europe Specialist">
+                <div class="card-body">
+                    <h3>Euro Specialist</h3>
+                    <p>Expert in Poland, Italy, Malta, & Schengen Visas.</p>
+                    <button class="btn-action" onclick="openModal('Euro Specialist')">Get Details</button>
+                </div>
             </div>
-        </div>
 
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600" alt="Study Visa">
-            <div class="card-body">
-                <h3>Global Study Visa</h3>
-                <p>Admissions in top International Universities.</p>
-                <button class="btn-action" onclick="openModal('Study Visa')">Consult Now</button>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600" alt="Study Visa">
+                <div class="card-body">
+                    <h3>Global Study Visa</h3>
+                    <p>Admissions in Italy, Russia, Singapore & 29+ Countries.</p>
+                    <button class="btn-action" onclick="openStudyModal()">Consult Now</button>
+                </div>
             </div>
-        </div>
 
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?q=80&w=600" alt="Flights">
-            <div class="card-body">
-                <h3>Flight Booking</h3>
-                <p>Cheapest domestic & international flight tickets.</p>
-                <button class="btn-action" onclick="openModal('Flight Booking')">Enquire Now</button>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600" alt="Visit Visa">
+                <div class="card-body">
+                    <h3>Visit & Tourist Visa</h3>
+                    <p>Explore 190+ Countries across the Globe.</p>
+                    <button class="btn-action" onclick="openVisitModal()">Book Now</button>
+                </div>
             </div>
-        </div>
 
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1454165833762-0265129b0021?q=80&w=600" alt="Insurance">
-            <div class="card-body">
-                <h3>Travel Insurance</h3>
-                <p>Secure your journey with global medical coverage.</p>
-                <button class="btn-action" onclick="openModal('Travel Insurance')">Get Covered</button>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600" alt="Business Visa">
+                <div class="card-body">
+                    <h3>Business Visa</h3>
+                    <p>Business entry for Russia, Dubai & Global Markets.</p>
+                    <button class="btn-action" onclick="openBusinessModal()">Consult Now</button>
+                </div>
             </div>
-        </div>
 
-        <div class="service-card" style="border: 2px solid #b8860b;">
-            <img src="https://images.unsplash.com/photo-1586762413150-da765e921381?q=80&w=600" alt="Passport CV">
-            <div class="card-body">
-                <h3 style="color:#1a237e;">Passport & CV Pro</h3>
-                <p><b>Passport:</b> New/Renewal Support.<br>
-                <b>Professional CV:</b> Europass, Dubai, & International Formats.<br>
-                <b>Writing:</b> Motivation & Cover Letters.</p>
-                <button class="btn-action" onclick="openModal('Passport & CV Service')">Get Pro Help</button>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?q=80&w=600" alt="Flights">
+                <div class="card-body">
+                    <h3>Flight Booking</h3>
+                    <p>Premium flight deals with instant confirmation.</p>
+                    <button class="btn-action" onclick="openModal('Flight Booking')">Enquire Now</button>
+                </div>
             </div>
-        </div>
 
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1454165833762-0265129b0021?q=80&w=600" alt="Insurance">
+                <div class="card-body">
+                    <h3>Travel Insurance</h3>
+                    <p>Secure global medical & travel coverage.</p>
+                    <button class="btn-action" onclick="openModal('Travel Insurance')">Get Covered</button>
+                </div>
+            </div>
+
+            <div class="service-card" style="border: 2px solid var(--gold);">
+                <img src="https://images.unsplash.com/photo-1586762413150-da765e921381?q=80&w=600" alt="CV Services">
+                <div class="card-body">
+                    <h3>Passport & Pro Documents</h3>
+                    <p>Europass CV, ATS Resume & Passport Support.</p>
+                    <button class="btn-action" onclick="openPassportModal()">Get Pro Help</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+
+    <footer>
+        <div class="footer-logo">AAZ VISA EXPORT</div>
+        <div class="footer-contact">+91 8818852109 | info.aazvisa@gmail.com</div>
+        <div>&copy; 2026 Abhishek Ahirwar - Trusted Visa Expert</div>
+    </footer>
+
+    <div id="commonModal" class="modal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal('commonModal')">&times;</span>
+            <h3 id="modalTitle">Registration</h3>
+            <form action="https://formspree.io/f/meeprqpk" method="POST">
+                <input type="hidden" name="Service" id="service_hidden">
+                <input type="text" name="Name" placeholder="Pura Naam" required>
+                <input type="tel" name="WhatsApp" placeholder="WhatsApp Number" required>
+                <button type="submit" class="btn-action">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="visitModal" class="modal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal('visitModal')">&times;</span>
+            <h3>Visit Visa (190 Countries)</h3>
+            <form action="https://formspree.io/f/meeprqpk" method="POST">
+                <input type="text" name="Name" placeholder="Pura Naam" required>
+                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
+                <select name="Country" required>
+                    <option value="">Select Country (190+ available)</option>
+                    <option value="All Countries">Apply for any of 190 Countries</option>
+                    <option value="Dubai">Dubai</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Europe">Schengen Europe</option>
+                    <option value="USA">USA</option>
+                    <option value="UK">UK</option>
+                </select>
+                <button type="submit" class="btn-action">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="businessModal" class="modal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal('businessModal')">&times;</span>
+            <h3>Business Visa</h3>
+            <form action="https://formspree.io/f/meeprqpk" method="POST">
+                <input type="text" name="Name" placeholder="Pura Naam" required>
+                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
+                <select name="Business_Country" required>
+                    <option value="Russia">Russia</option>
+                    <option value="Dubai">Dubai</option>
+                    <option value="Other">Other Global Markets</option>
+                </select>
+                <button type="submit" class="btn-action">Enquire Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="studyModal" class="modal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal('studyModal')">&times;</span>
+            <h3>Study Visa (29+ Countries)</h3>
+            <form action="https://formspree.io/f/meeprqpk" method="POST">
+                <input type="text" name="Name" placeholder="Pura Naam" required>
+                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
+                <select name="Study_Destination" required>
+                    <option value="Italy">Italy</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Schengen 29">Schengen (29 Countries)</option>
+                </select>
+                <button type="submit" class="btn-action">Consult Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="passportModal" class="modal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal('passportModal')">&times;</span>
+            <h3>Passport & CV Services</h3>
+            <form action="https://formspree.io/f/meeprqpk" method="POST">
+                <input type="text" name="Name" placeholder="Pura Naam" required>
+                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
+                <select name="Document_Service" required>
+                    <option value="Passport">Passport New/Renewal</option>
+                    <option value="Europass CV">Europass CV</option>
+                    <option value="ATS CV">ATS Friendly CV</option>
+                    <option value="Dubai CV">Dubai Format CV</option>
+                    <option value="Motivation Letter">Motivation Letter</option>
+                    <option value="Cover Letter">Cover Letter</option>
+                </select>
+                <button type="submit" class="btn-action">Get Pro Help</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(s) { document.getElementById('service_hidden').value=s; document.getElementById('modalTitle').innerText=s; document.getElementById('commonModal').style.display='flex'; }
+        function openVisitModal() { document.getElementById('visitModal').style.display='flex'; }
+        function openBusinessModal() { document.getElementById('businessModal').style.display='flex'; }
+        function openStudyModal() { document.getElementById('studyModal').style.display='flex'; }
+        function openPassportModal() { document.getElementById('passportModal').style.display='flex'; }
+        function closeModal(id) { document.getElementById(id).style.display='none'; }
+    </script>
+</body>
+</html>
+
 <div id="bookingModal" class="modal">
     <div class="modal-box">
         <h3 id="modalTitle" style="text-align:center; color:var(--navy);">Booking Registration</h3>
