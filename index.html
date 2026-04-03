@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAZ Visa Export - Founder Portal</title>
+    <title>AAZ Visa Export - Global Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Arial', sans-serif; background: #001f3f; color: white; margin: 0; padding: 0; text-align: center; }
-        .container { background: rgba(0, 51, 102, 0.9); width: 90%; max-width: 500px; margin: 20px auto; padding: 20px; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); border: 2px solid #daa520; }
-        .user-photo { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #daa520; object-fit: cover; margin-bottom: 10px; }
-        .logo { width: 120px; margin-bottom: 10px; }
-        h1 { margin: 10px 0 5px; color: #daa520; font-size: 22px; text-transform: uppercase; }
-        .tagline { color: #ccc; font-style: italic; margin-bottom: 20px; font-size: 14px; }
-        .form-section { background: white; color: black; padding: 15px; border-radius: 15px; text-align: left; }
-        .form-section h3 { text-align: center; color: #003366; margin-top: 0; }
-        input, select, button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        button { background: #daa520; color: #001f3f; border: none; font-size: 18px; font-weight: bold; cursor: pointer; }
-        .social-links { margin: 25px 0; padding-top: 15px; border-top: 1px solid #444; }
-        .social-links p { margin-bottom: 15px; color: #daa520; font-weight: bold; }
-        .social-links a { font-size: 35px; margin: 0 15px; text-decoration: none; display: inline-block; transition: 0.3s; }
+        :root { --gold: #daa520; --navy: #001f3f; --white: #ffffff; }
+        body { font-family: 'Poppins', sans-serif; background: var(--navy); color: var(--white); margin: 0; padding: 0; text-align: center; }
+        .container { background: rgba(0, 40, 80, 0.95); width: 95%; max-width: 600px; margin: 20px auto; padding: 25px; border-radius: 30px; border: 2px solid var(--gold); box-shadow: 0 15px 50px rgba(0,0,0,0.8); }
+        
+        /* Logo & Photo - Adjusted for better look */
+        .logo { width: 180px; margin-bottom: 10px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+        .user-photo { width: 170px; height: 170px; border-radius: 50%; border: 5px solid var(--gold); object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 20px rgba(218, 165, 32, 0.5); }
+        
+        h1 { margin: 5px 0; color: var(--gold); font-size: 28px; text-transform: uppercase; }
+        .tagline { color: #ccc; font-size: 16px; margin-bottom: 25px; letter-spacing: 1px; }
+
+        /* Form Styling */
+        .form-section { background: var(--white); color: #333; padding: 25px; border-radius: 20px; text-align: left; }
+        .form-section h3 { text-align: center; color: var(--navy); margin-top: 0; border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+        
+        label { font-weight: 600; display: block; margin: 12px 0 5px; color: var(--navy); font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 10px; font-size: 15px; box-sizing: border-box; }
+        
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        
+        /* Call Buttons */
+        .call-options { margin-top: 20px; display: flex; gap: 10px; }
+        .btn-call { flex: 1; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; color: white; transition: 0.3s; }
+        .voice { background: #007bff; }
+        .video { background: #dc3545; }
+        .btn-call:hover { opacity: 0.8; transform: scale(1.02); }
+
+        button.submit-btn { background: var(--gold); color: var(--navy); border: none; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; padding: 15px; border-radius: 12px; margin-top: 15px; text-transform: uppercase; }
+
+        .social-links { margin-top: 25px; border-top: 1px solid #444; padding-top: 20px; }
+        .social-links a { font-size: 35px; margin: 0 15px; transition: 0.3s; display: inline-block; }
         .fa-instagram { color: #E1306C; }
         .fa-facebook { color: #4267B2; }
         .fa-whatsapp { color: #25D366; }
@@ -28,35 +46,81 @@
 
 <div class="container">
     <img src="1000070395.webp" alt="AAZ Logo" class="logo">
-    
-    <img src="1000070399.webp" alt="Abhishek Ahirwar" class="user-photo">
+    <img src="1000070399.webp" alt="Founder" class="user-photo">
     <h1>Abhishek Ahirwar</h1>
     <p class="tagline">Founder & CEO - AAZ Visa Export</p>
 
     <div class="form-section">
-        <h3>Visa Enquiry Form</h3>
+        <h3>Global Visa Enquiry Form</h3>
         <form action="https://formspree.io/f/meeprqpk" method="POST">
+            <label>Pura Naam / Full Name</label>
             <input type="text" name="name" placeholder="Aapka Naam" required>
-            <input type="tel" name="phone" placeholder="WhatsApp Number" required>
-            <select name="country" required>
-                <option value="">Desh Chunein (Select Country)</option>
+
+            <label>WhatsApp Number</label>
+            <input type="tel" name="phone" placeholder="+91..." required>
+
+            <label>Visa Type (Select Category)</label>
+            <select name="visa_category" required>
+                <option value="">Choose Visa Category</option>
+                <option value="Tourist Visa">Tourist Visa (Ghoomne ke liye)</option>
+                <option value="Work Visa">Work Visa (Kaam ke liye)</option>
+                <option value="Study Visa">Study Visa (Padhai ke liye)</option>
+                <option value="Business Visa">Business Visa (Vyapar)</option>
+                <option value="Family Visa">Family / PR Visa</option>
+            </select>
+
+            <div class="service-grid">
+                <div>
+                    <label>Flight Booking</label>
+                    <select name="flight">
+                        <option value="No">Not Required</option>
+                        <option value="Yes">Yes, Needed</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Insurance</label>
+                    <select name="insurance">
+                        <option value="No">Not Required</option>
+                        <option value="Yes">Yes, Needed</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>Select Country (All World)</label>
+            <select name="target_country" required>
+                <option value="">Select Destination</option>
                 <option value="Poland">Poland</option>
                 <option value="Italy">Italy</option>
                 <option value="Malta">Malta</option>
                 <option value="Hungary">Hungary</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+                <option value="Germany">Germany</option>
+                <option value="France">France</option>
                 <option value="Lithuania">Lithuania</option>
+                <option value="Other">Any Other Country...</option>
             </select>
-            <button type="submit">Submit Details</button>
+
+            <label>Aapka Budget (Optional)</label>
+            <input type="text" name="budget" placeholder="e.g. 5 Lakh - 10 Lakh">
+
+            <button type="submit" class="submit-btn">Register Details</button>
         </form>
+
+        <label style="text-align:center; margin-top:20px;">Personal Consultation (Direct Connect)</label>
+        <div class="call-options">
+            <a href="tel:+918120365753" class="btn-call voice"><i class="fas fa-phone-alt"></i> Voice Call</a>
+            <a href="https://wa.me/918120365753" class="btn-call video"><i class="fas fa-video"></i> Video Call</a>
+        </div>
     </div>
 
     <div class="social-links">
-        <p>Connect With Us:</p>
         <a href="https://www.instagram.com/aaz.visa_export?igsh=MTl5NGRxeHp4ankyMw==" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://www.facebook.com/share/1EnKXFoDBm/" target="_blank"><i class="fab fa-facebook"></i></a>
         <a href="https://wa.link/0d1cm6" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbBfeqS17EmlmkD2i13D" target="_blank"><i class="fas fa-bullhorn" style="color: #25D366;"></i></a>
     </div>
 </div>
+
 </body>
 </html>
