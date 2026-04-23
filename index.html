@@ -6,173 +6,178 @@
     <title>AAZ Visa Export - Global Travel Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #daa520; --navy: #001f3f; --light-gold: #ffcc00; }
-        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
+        :root { --gold: #daa520; --navy: #001f3f; }
+        body { font-family: 'Poppins', sans-serif; background: #f4f7f6; margin: 0; padding: 0; }
 
-        /* Full Width Slider Section */
-        .hero-section { position: relative; width: 100%; height: 90vh; overflow: hidden; background: #000; }
-        .slides { display: flex; width: 500%; height: 100%; animation: slideAnim 25s infinite; }
-        .slide { width: 20%; height: 100%; position: relative; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-        @keyframes slideAnim { 
+        /* Header (Original Style) */
+        header { background: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top:0; z-index: 4000; }
+        .logo-img { width: 70px; mix-blend-mode: multiply; }
+
+        /* Slider (Puri Badi Photo Fix) */
+        .hero-section { width: 100%; height: 80vh; position: relative; overflow: hidden; background: #000; }
+        .slides { display: flex; width: 400%; height: 100%; animation: slideShow 20s infinite; }
+        .slide { width: 25%; height: 100%; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        @keyframes slideShow { 
             0%, 20% { transform: translateX(0%); }
-            25%, 45% { transform: translateX(-20%); }
-            50%, 70% { transform: translateX(-40%); }
-            75%, 95% { transform: translateX(-60%); }
+            25%, 45% { transform: translateX(-25%); }
+            50%, 70% { transform: translateX(-50%); }
+            75%, 100% { transform: translateX(-75%); }
         }
 
-        .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 90%; }
-        .founder-pfp { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--gold); box-shadow: 0 0 20px rgba(218, 165, 32, 0.5); margin-bottom: 15px; }
+        .hero-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; width: 100%; }
+        .founder-img { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 10px; }
 
-        /* Stats Dashboard */
-        .stats-dashboard { background: var(--navy); color: white; display: flex; justify-content: space-around; padding: 25px 10px; border-top: 4px solid var(--gold); margin-top: -5px; }
-        .stat-box h2 { color: var(--gold); margin: 0; font-size: 28px; }
-        .stat-box p { margin: 0; font-size: 12px; opacity: 0.8; }
+        /* Stats Dashboard (Wahi Purana Wala) */
+        .stats-bar { background: var(--navy); color: white; display: flex; justify-content: space-around; padding: 20px; border-bottom: 4px solid var(--gold); }
+        .stat-box h2 { color: var(--gold); margin: 0; }
 
-        /* Portal Button */
-        .portal-btn { display: block; width: fit-content; margin: 25px auto; background: linear-gradient(45deg, #004080, #001f3f); color: var(--gold); padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; border: 2px solid var(--gold); }
+        /* Grid & Cards */
+        .container { padding: 30px 15px; max-width: 1200px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .service-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
+        .service-card img { width: 100%; height: 180px; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .btn-action { background: var(--gold); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* Services Grid */
-        .container { padding: 40px 15px; max-width: 1200px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .apply-btn { background: var(--gold); color: black; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
-
-        /* Forms / Modals */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: white; padding: 30px; border-radius: 20px; width: 100%; max-width: 450px; position: relative; }
-        select, input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; }
+        /* Modal */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; }
+        .modal-box { background: white; width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
+<header>
+    <div style="display:flex; align-items:center; gap:10px;">
+        <img src="1000070395.webp" class="logo-img">
+        <span style="font-weight:900; color:var(--navy);">AAZ VISA EXPORT</span>
+    </div>
+    <div style="text-align:right; font-size:12px;">+91 8818852109</div>
+</header>
+
 <div class="hero-section">
     <div class="slides">
-        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" alt="Paris"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200" alt="Dubai"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1200" alt="India"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200" alt="USA"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1200"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200"></div>
     </div>
-    <div class="hero-content">
-        <img src="1000070399.webp" class="founder-pfp">
-        <h1>Abhishekk Ahirwar</h1>
-        <p>Founder & CEO - AAZ Visa Export</p>
+    <div class="hero-overlay">
+        <img src="1000070399.webp" class="founder-img">
+        <h1 style="text-shadow: 2px 2px 4px #000;">Abhishekk Ahirwar</h1>
+        <p style="background:rgba(0,0,0,0.5); display:inline-block; padding:5px 10px;">Founder & CEO</p>
     </div>
 </div>
 
-<div class="stats-dashboard">
-    <div class="stat-box"><h2>3+</h2><p>Years Exp.</p></div>
-    <div class="stat-box"><h2>1842+</h2><p>Visas Issued</p></div>
-    <div class="stat-box"><h2>1673+</h2><p>Happy Clients</p></div>
+<div class="stats-bar">
+    <div class="stat-box"><h2 id="exp">0</h2><p>Years Exp.</p></div>
+    <div class="stat-box"><h2 id="visa">0</h2><p>Visas</p></div>
+    <div class="stat-box"><h2 id="clients">0</h2><p>Clients</p></div>
 </div>
 
-<a href="portal.html" class="portal-btn"><i class="fas fa-lock"></i> OPEN CANDIDATE PORTAL</a>
+<div style="text-align:center; padding: 20px;">
+    <a href="portal.html" style="background:var(--navy); color:var(--gold); padding:15px 30px; text-decoration:none; border-radius:50px; font-weight:bold; border:2px solid var(--gold);">OPEN CANDIDATE PORTAL</a>
+</div>
 
 <div class="container">
-    <h2 style="text-align:center; color:var(--navy); margin-bottom:40px;">Hamari Specialist Services</h2>
     <div class="grid">
-        <div class="card">
+        <div class="service-card">
             <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600">
-            <div class="card-body"><h3>Work Permit Visa</h3><p>Europe & Gulf Specialist</p>
-            <button class="apply-btn" onclick="openForm('Work Permit')">Choose Country</button></div>
+            <div class="card-body"><h3>Work Permit Visa</h3><button class="btn-action" onclick="openForm('Work Permit')">Apply Now</button></div>
         </div>
 
-        <div class="card" style="border: 2px solid #ff4500;">
+        <div class="service-card">
             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600">
-            <div class="card-body"><h3>Holiday Packages 🌴</h3><p>190+ Countries Available</p>
-            <button class="apply-btn" style="background:#ff4500; color:white;" onclick="openForm('Holiday Package')">Plan My Trip</button></div>
+            <div class="card-body"><h3>Holiday Package</h3><button class="btn-action" onclick="openForm('Holiday Package')">Choose Country</button></div>
         </div>
 
-        <div class="card">
+        <div class="service-card">
             <img src="https://images.unsplash.com/photo-1586762413150-da765e921381?q=80&w=600">
-            <div class="card-body"><h3>Passport & Pro CV</h3><p>Europass & ATS Specialist</p>
-            <button class="apply-btn" onclick="openCVForm()">Select Format</button></div>
+            <div class="card-body"><h3>Passport & CV</h3><button class="btn-action" onclick="openCVForm()">Select Service</button></div>
         </div>
     </div>
 </div>
 
-<div id="formModal" class="modal">
-    <div class="modal-content">
-        <h3 id="formTitle">Registration</h3>
+<div id="mainModal" class="modal">
+    <div class="modal-box">
+        <h3 id="mTitle" style="text-align:center;">Registration</h3>
         <form action="https://formspree.io/f/meeprqpk" method="POST">
-            <input type="hidden" name="Service" id="serviceType">
-            <input type="text" name="Name" placeholder="Full Name" required>
+            <input type="hidden" name="Service" id="sHidden">
+            <input type="text" name="Name" placeholder="Name" required>
             <input type="tel" name="WhatsApp" placeholder="WhatsApp Number" required>
             
-            <div id="countryOption">
-                <label>Select Country:</label>
+            <div id="countryList">
                 <select name="Country">
                     <option value="Poland">Poland 🇵🇱</option>
+                    <option value="Italy">Italy 🇮🇹</option>
+                    <option value="Nepal">Nepal 🇳🇵</option>
+                    <option value="Sri Lanka">Sri Lanka 🇱🇰</option>
+                    <option value="France">France 🇫🇷</option>
+                    <option value="Japan">Japan 🇯🇵</option>
+                    <option value="USA">USA 🇺🇸</option>
                     <option value="Italy">Italy 🇮🇹</option>
                     <option value="Hungary">Hungary 🇭🇺</option>
                     <option value="Dubai">Dubai 🇦🇪</option>
                     <option value="Russia">Russia 🇷🇺</option>
                     <option value="Malta">Malta </option>
-                    <option value="USA">USA🇺🇲</option>
                     <option value="UK">UK🇬🇧</option>
                     <option value="Thailand">Thailand 🇹🇭</option>
                     <option value="Malaysia">Malaysia 🇲🇾</option>
                     <option value="Vietnam">Vietnam 🇻🇳</option>
                     <option value="Singapore">Singapore 🇸🇬</option>
-                     <option value="Nepal">Nepal 🇳🇵</option>
                     <option value="Sri Lanka">Sri Lanka 🇱🇰</option>
                     <option value="Laos">Laos 🇱🇦</option>
                     <option value="Azerbaijan">Azerbaijan 🇦🇿</option>
                     <option value="Georgia">Georgia 🇬🇪</option>
                     <option value="Cambodia">Cambodia 🇰🇭</option>
                     <option value="Egypt">Egypt 🇪🇬</option>
-                    <option value="France">France 🇫🇷</option>
                     <option value="Spain">Spain 🇪🇸</option>
                     <option value="Japan">Japan 🇯🇵</option>
                     <option value="Switzerland">Switzerland 🇨🇭</option>
                     <option value="Turkey">Turkey 🇹🇷</option>
-                    </select>
-                     <option value="Europe 29">Europe (29 Countries) 🇪🇺</option>
-                      <option value="Other">Other 193+ Countries</option>
-                  </div>
+                    <<option value="Europe29">Europe (29 Countries) </option>
+                        <option value="Other">Other 190+Countries</option>
                     
-                    <option value="Other">Other (190+ Countries)</option>
                 </select>
             </div>
 
-            <div id="cvOption" style="display:none;">
-                <label>Service Type:</label>
-                <select name="Document_Type">
-                    <option value="New Passport">Apply New Passport</option>
-                    <option value="Europass CV">Europass CV Format</option>
-                    <option value="ATS CV">ATS Friendly CV</option>
-                    <option value="Cover Letter">Professional Cover Letter</option>
+            <div id="cvList" style="display:none;">
+                <select name="Document">
+                    <option value="New Passport">New Passport</option>
+                    <option value="Europass CV">Europass CV</option>
+                    <option value="ATS CV">ATS CV</option>
                 </select>
             </div>
 
-            <button type="submit" class="apply-btn">Submit Request</button>
-            <p style="color:red; cursor:pointer; text-align:center;" onclick="closeForm()">Cancel</p>
+            <button type="submit" class="btn-action" style="margin-top:10px;">Submit Details</button>
+            <p onclick="closeModal()" style="text-align:center; color:red; cursor:pointer;">Close</p>
         </form>
     </div>
 </div>
 
 <script>
-    function openForm(service) {
-        document.getElementById('serviceType').value = service;
-        document.getElementById('formTitle').innerText = service;
-        document.getElementById('cvOption').style.display = 'none';
-        document.getElementById('countryOption').style.display = 'block';
-        document.getElementById('formModal').style.display = 'flex';
+    function openForm(s) { 
+        document.getElementById('sHidden').value=s; 
+        document.getElementById('mTitle').innerText=s; 
+        document.getElementById('cvList').style.display='none';
+        document.getElementById('countryList').style.display='block';
+        document.getElementById('mainModal').style.display='flex'; 
     }
-
     function openCVForm() {
-        document.getElementById('serviceType').value = "Passport & CV";
-        document.getElementById('formTitle').innerText = "Passport & CV Services";
-        document.getElementById('countryOption').style.display = 'none';
-        document.getElementById('cvOption').style.display = 'block';
-        document.getElementById('formModal').style.display = 'flex';
+        document.getElementById('sHidden').value='Passport & CV';
+        document.getElementById('mTitle').innerText='Passport & CV Service';
+        document.getElementById('countryList').style.display='none';
+        document.getElementById('cvList').style.display='block';
+        document.getElementById('mainModal').style.display='flex';
     }
+    function closeModal() { document.getElementById('mainModal').style.display='none'; }
 
-    function closeForm() { document.getElementById('formModal').style.display = 'none'; }
+    function count(id, max) {
+        let c=0; let e=document.getElementById(id);
+        let i=setInterval(()=>{ if(c<max){ c+=Math.ceil(max/40); if(c>max)c=max; e.innerText=c+"+"; }else clearInterval(i); }, 40);
+    }
+    window.onload = () => { count('exp', 3); count('visa', 1842); count('clients', 1673); };
 </script>
-
 </body>
 </html>
