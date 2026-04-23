@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAZ Candidate Portal | Track Status</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #0b1120; color: white; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .login-card { background: #111827; padding: 40px; border-radius: 15px; border: 1px solid #daa520; width: 90%; max-width: 400px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 20px 0; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: white; box-sizing: border-box; }
+        .btn { background: #daa520; color: black; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
+        .status-box { display: none; margin-top: 30px; text-align: left; background: #1f2937; padding: 20px; border-radius: 10px; }
+        .status-tag { padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px; }
+        .approved { background: #28a745; color: white; }
+        .pending { background: #f39c12; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="login-card" id="login-form">
+    <h2 style="color:#daa520">Candidate Portal</h2>
+    <p>Track your Visa Application</p>
+    <input type="text" id="candidateID" placeholder="Enter Your Reference ID (e.g. AAZ-C-101)">
+    <button class="btn" onclick="trackStatus()">Track My Application</button>
+</div>
+
+<div class="login-card" id="status-view" style="display:none;">
+    <h2 style="color:#daa520">Application Status</h2>
+    <div class="status-box" style="display:block;">
+        <p><strong>Name:</strong> <span id="dispName">Abhishek</span></p>
+        <p><strong>Service:</strong> Work Permit (Italy)</p>
+        <p><strong>Status:</strong> <span id="dispStatus" class="status-tag approved">Processing</span></p>
+        <hr style="border-color:#374151">
+        <p style="font-size:12px;"><strong>Documents Submitted:</strong></p>
+        <ul style="font-size:12px; color:#9ca3af;">
+            <li>Passport Front Copy ✅</li>
+            <li>Passport Size Photo ✅</li>
+            <li>Educational Certificates ✅</li>
+        </ul>
+        <button class="btn" style="margin-top:20px; background:#4b5563; color:white;" onclick="location.reload()">Back</button>
+    </div>
+</div>
+
+<script>
+    function trackStatus() {
+        const id = document.getElementById('candidateID').value;
+        if(id === "AAZ-TEST") { // Example Testing ID
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('status-view').style.display = 'block';
+            document.getElementById('dispName').innerText = "Test Candidate";
+            document.getElementById('dispStatus').innerText = "Under Review";
+        } else {
+            alert("Application ID Not Found. Please contact AAZ Visa Export.");
+        }
+    }
+</script>
+</body>
+</html>
