@@ -1,413 +1,179 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="hi">
-<head><meta name="google-site-verification" content="W1Ex6KYIMYqoVqPg-qDK4D6e93pO6BV8w0sntAzAwrc" />
+<head>
+    <meta name="google-site-verification" content="W1Ex6KYIMYqoVqPg-qDK4D6e93pO6BV8w0sntAzAwrc" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AAZ Visa Export - Global Travel Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        #adminPanel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #001f3f; color: white; z-index: 10000; overflow-y: auto; padding: 20px; }
-.pattern-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 11000; flex-direction: column; align-items: center; justify-content: center; color: white; }
-#aiChat { position: fixed; bottom: 90px; right: 20px; width: 300px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 4500; display: none; flex-direction: column; border: 2px solid #daa520; }
-        
         :root { --gold: #daa520; --navy: #001f3f; --accent: #ffcc00; }
         body { font-family: 'Poppins', sans-serif; background: #f4f7f6; margin: 0; padding: 0; overflow-x: hidden; }
-<script>
-    function startCounting(id, max) {
-        let count = 0;
-        let itv = setInterval(() => {
-            if(count < max) { 
-                count++; 
-                document.getElementById(id).innerText = count + "+"; 
-            } else { 
-                clearInterval(itv); 
-            }
-        }, 15);
-    }
-    
-    window.addEventListener('load', () => {
-        // Aap yahan se ginti control kar sakte hain
-        if(document.getElementById('exp')) startCounting('exp', 3);
-        if(document.getElementById('visa-count')) startCounting('visa-count', 1842);
-        if(document.getElementById('happy-clients')) startCounting('happy-clients', 1673);
-    });
-</script>
-        
-        /* Floating WhatsApp Button (Side) */
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 35px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 5000; }
 
-        /* Top Header with WhatsApp, Gmail & Call */
-        header { background: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); sticky; top:0; z-index: 4000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* Admin & AI Controls (Hidden) */
+        #adminPanel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #001f3f; color: white; z-index: 10000; padding: 20px; }
+        .pattern-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 11000; flex-direction: column; align-items: center; justify-content: center; color: white; }
+
+        /* Floating Buttons */
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 35px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 5000; }
+        .ai-float { position: fixed; bottom: 20px; left: 20px; background: var(--navy); color: white; width: 55px; height: 55px; border-radius: 50%; text-align: center; line-height: 55px; font-size: 25px; z-index: 5000; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+        /* Header */
+        header { background: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top:0; z-index: 4000; }
         .logo-box { display: flex; align-items: center; gap: 10px; }
         .logo-img { width: 70px; mix-blend-mode: multiply; }
-        .contact-top-bar { text-align: right; font-size: 11px; font-weight: bold; line-height: 1.4; }
-        .whatsapp-top-btn { background: #25d366; color: white; padding: 5px 12px; border-radius: 20px; text-decoration: none; font-size: 12px; display: inline-block; margin-bottom: 5px; }
+        .contact-top-bar { text-align: right; font-size: 11px; font-weight: bold; }
+        .whatsapp-top-btn { background: #25d366; color: white; padding: 5px 12px; border-radius: 20px; text-decoration: none; display: inline-block; margin-bottom: 5px; }
 
-        /* CELEBRITY & FAMOUS PLACES SLIDER */
-        .main-slider { width: 100%; height: 500px; position: relative; overflow: hidden; background: #000; }
+        /* Slider */
+        .main-slider { width: 100%; height: 450px; position: relative; overflow: hidden; background: #000; }
         .slides { display: flex; width: 800%; height: 100%; animation: slideShow 35s infinite; }
-        .slide { width: 12.5%; height: 100%; position: relative; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
-        
-        @keyframes slideShow {
-            0%, 10% { transform: translateX(0%); }
-            12.5%, 22.5% { transform: translateX(-12.5%); }
-            25%, 35% { transform: translateX(-25%); }
-            37.5%, 47.5% { transform: translateX(-37.5%); }
-            50%, 60% { transform: translateX(-50%); }
-            62.5%, 72.5% { transform: translateX(-62.5%); }
-            75%, 85% { transform: translateX(-75%); }
-            87.5%, 100% { transform: translateX(-87.5%); }
-        }
+        .slide { width: 12.5%; height: 100%; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+        @keyframes slideShow { 0%, 10% { transform: translateX(0%); } 12.5%, 22.5% { transform: translateX(-12.5%); } 25%, 35% { transform: translateX(-25%); } 37.5%, 47.5% { transform: translateX(-37.5%); } 50%, 60% { transform: translateX(-50%); } 62.5%, 72.5% { transform: translateX(-62.5%); } 75%, 85% { transform: translateX(-75%); } 87.5%, 100% { transform: translateX(-87.5%); } }
+        .hero-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 95%; }
+        .founder-img { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 10px; cursor: pointer; }
 
-        .hero-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 90%; }
-        .founder-img { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 30px rgba(255,204,0,0.5); margin-bottom: 15px; }
+        /* Container & Grid */
+        .container { padding: 30px 15px; max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; color: var(--navy); margin-bottom: 30px; font-size: 26px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .service-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid #eee; text-align: center; }
+        .service-card img { width: 100%; height: 170px; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .btn-action { background: var(--gold); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* BOXES GRID */
-        .container { padding: 40px 20px; max-width: 1200px; margin: auto; }
-        .section-title { text-align: center; color: var(--navy); margin-bottom: 40px; font-size: 28px; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px; width: 100%; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .service-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: 0.4s; border: 1px solid #eee; }
-        .service-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .service-card img { width: 100%; height: 180px; object-fit: cover; }
-        .card-body { padding: 20px; text-align: center; }
-        .card-body h3 { margin: 0 0 10px; color: var(--navy); font-size: 20px; }
-        .btn-action { background: var(--gold); color: black; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-
-        /* MODAL */
-        .modal { display: none; position: fixed; z-index: 9000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
-        .modal-box { background: white; width: 90%; max-width: 400px; margin: 80px auto; padding: 30px; border-radius: 25px; }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; }
-
-       <div onclick="toggleAI()" class="fixed bottom-5 left-5 bg-navy-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl cursor-pointer z-50">
-    <i class="fas fa-robot text-2xl"></i>
-</div>
-        <div id="patternLock" class="pattern-overlay">
-    <h2 class="text-xl mb-4 text-yellow-500 font-bold uppercase">Master Control Login</h2>
-    <div class="grid grid-cols-3 gap-4 mb-8">
-        <button onclick="addToPattern(1)" class="w-16 h-16 rounded-full border-2 border-white font-bold">1</button>
-        <button onclick="addToPattern(2)" class="w-16 h-16 rounded-full border-2 border-white font-bold">2</button>
-        <button onclick="addToPattern(5)" class="w-16 h-16 rounded-full border-2 border-white font-bold">5</button>
-    </div>
-</div>
-        
-        footer { background: var(--navy); color: white; padding: 40px 20px; text-align: center; }
+        /* Modals */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .modal-box { background: white; width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; position: relative; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        footer { background: var(--navy); color: white; padding: 30px 15px; text-align: center; }
     </style>
-    
 </head>
 <body>
 
 <a href="https://wa.me/918818852109" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<div onclick="toggleAI()" class="ai-float"><i class="fas fa-robot"></i></div>
 
 <header>
     <div class="logo-box">
         <img src="1000070395.webp" class="logo-img">
-        <span style="font-weight:900; color:var(--navy); font-size:18px;">AAZ VISA EXPORT</span>
+        <span style="font-weight:900; color:var(--navy); font-size:16px;">AAZ VISA EXPORT</span>
     </div>
     <div class="contact-top-bar">
-        <a href="https://wa.me/918818852109" class="whatsapp-top-btn"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a><br>
-        <i class="fas fa-phone-alt" style="color:var(--gold);"></i> +91 8818852109<br>
-        <i class="fas fa-envelope" style="color:var(--gold);"></i> info.aazvisa@gmail.com
+        <a href="https://wa.me/918818852109" class="whatsapp-top-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a><br>
+        +91 8818852109
     </div>
 </header>
 
 <div class="main-slider">
     <div class="slides">
         <div class="slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1200" alt="Taj Mahal"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200" alt="Dubai Burj Khalifa"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" alt="Paris France"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1200" alt="Rome Italy"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200" alt="Famous Celebrities Stadium"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200" alt="USA Times Square"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200" alt="Dubai"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" alt="Paris"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1200" alt="Rome"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200" alt="USA"></div>
         <div class="slide"><img src="https://images.unsplash.com/photo-1524492459584-96c6dd59f914?q=80&w=1200" alt="India Gate"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1200" alt="Luxury Holiday"></div>
     </div>
-    
     <div class="hero-overlay">
-        <img src="1000070399.webp" class="founder-img">
-        <h1 style="margin:5px 0; font-size:35px; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);">Abhishek Ahirwar</h1>
-        <p style="font-weight:bold; letter-spacing:1px; background:rgba(0,0,0,0.5); display:inline-block; padding:5px 15px;">FOUNDER & CEO</p>
+        <img src="1000070399.webp" class="founder-img" onclick="triggerAdmin()">
+        <h1 style="margin:5px 0; font-size:28px; text-shadow: 2px 2px 5px #000;">Abhishek Ahirwar</h1>
+        <p style="font-weight:bold; background:rgba(0,0,0,0.6); display:inline-block; padding:5px 12px; border-radius:5px;">FOUNDER & CEO</p>
     </div>
 </div>
-    <div class="container">
-        <h2 class="section-title">Hamari Specialist Services</h2>
-        <div class="grid">
-            
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600" alt="Work Visa">
-                <div class="card-body">
-                    <h3>Work Permit Visa</h3>
-                    <p>Global employment opportunities with legal work permits.</p>
-                    <button class="btn-action" onclick="openModal('Work Permit')">Apply Now</button>
-                </div>
-            </div>
 
-            <div class="service-card" style="border: 2px solid var(--gold);">
-                <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=600" alt="Europe Specialist">
-                <div class="card-body">
-                    <h3>Euro Specialist</h3>
-                    <p>Expert in Poland, Italy, Malta, & Schengen Visas.</p>
-                    <button class="btn-action" onclick="openModal('Euro Specialist')">Get Details</button>
-                </div>
-            </div>
+<div style="text-align: center; padding: 30px 10px; background: #fff;">
+    <a href="portal.html" style="background: linear-gradient(45deg, var(--navy), #004080); color: var(--gold); padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; border: 2px solid var(--gold); display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+        <i class="fas fa-user-shield"></i> OPEN CANDIDATE PORTAL
+    </a>
+    
+    <div style="display: flex; justify-content: space-around; max-width: 600px; margin: 30px auto; background: var(--navy); padding: 20px; border-radius: 15px; border-bottom: 4px solid var(--gold);">
+        <div><h2 id="exp" style="color: var(--gold); margin:0;">0</h2><p style="color:white; font-size:10px; margin:0;">Years Exp.</p></div>
+        <div><h2 id="visa" style="color: var(--gold); margin:0;">0</h2><p style="color:white; font-size:10px; margin:0;">Visas</p></div>
+        <div><h2 id="clients" style="color: var(--gold); margin:0;">0</h2><p style="color:white; font-size:10px; margin:0;">Clients</p></div>
+    </div>
+</div>
 
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600" alt="Study Visa">
-                <div class="card-body">
-                    <h3>Global Study Visa</h3>
-                    <p>Admissions in Italy, Russia, Singapore & 29+ Countries.</p>
-                    <button class="btn-action" onclick="openStudyModal()">Consult Now</button>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600" alt="Visit Visa">
-                <div class="card-body">
-                    <h3>Visit & Tourist Visa</h3>
-                    <p>Explore 190+ Countries across the Globe.</p>
-                    <button class="btn-action" onclick="openVisitModal()">Book Now</button>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600" alt="Business Visa">
-                <div class="card-body">
-                    <h3>Business Visa</h3>
-                    <p>Business entry for Russia, Dubai & Global Markets.</p>
-                    <button class="btn-action" onclick="openBusinessModal()">Consult Now</button>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?q=80&w=600" alt="Flights">
-                <div class="card-body">
-                    <h3>Flight Booking</h3>
-                    <p>Premium flight deals with instant confirmation.</p>
-                    <button class="btn-action" onclick="openModal('Flight Booking')">Enquire Now</button>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1454165833762-0265129b0021?q=80&w=600" alt="Insurance">
-                <div class="card-body">
-                    <h3>Travel Insurance</h3>
-                    <p>Secure global medical & travel coverage.</p>
-                    <button class="btn-action" onclick="openModal('Travel Insurance')">Get Covered</button>
-                </div>
-            </div>
-                        <div class="service-card" style="border: 2px solid #ff9800; background: #fffcf5;">
-                <img src="https://images.unsplash.com/photo-1506929194757-81d7017f55a9?q=80&w=600" alt="Holiday Packages">
-                <div class="card-body">
-                    <h3 style="color: #e65100;">🌴 Holiday Packages</h3>
-                    <p>Exclusive deals for Dubai, Thailand, Vietnam & 190+ Countries.</p>
-                    <button class="btn-action" style="background: linear-gradient(45deg, #ff9800, #f44336);" onclick="openHolidayModal()">Plan My Trip</button>
-                </div>
-            </div>
-
-            <div class="service-card" style="border: 2px solid var(--gold);">
-                <img src="https://images.unsplash.com/photo-1586762413150-da765e921381?q=80&w=600" alt="CV Services">
-                <div class="card-body">
-                    <h3>Passport & Pro Documents</h3>
-                    <p>Europass CV, ATS Resume & Passport Support.</p>
-                    <button class="btn-action" onclick="openPassportModal()">Get Pro Help</button>
-                </div>
-            </div>
-
+<div class="container">
+    <h2 class="section-title">Hamari Specialist Services</h2>
+    <div class="grid">
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600">
+            <div class="card-body"><h3>Work Permit Visa</h3><button class="btn-action" onclick="openModal('Work Permit')">Apply Now</button></div>
+        </div>
+        <div class="service-card" style="border: 2px solid var(--gold);">
+            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=600">
+            <div class="card-body"><h3>Euro Specialist</h3><button class="btn-action" onclick="openModal('Euro Specialist')">Get Details</button></div>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600">
+            <div class="card-body"><h3>Global Study Visa</h3><button class="btn-action" onclick="openStudyModal()">Consult Now</button></div>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600">
+            <div class="card-body"><h3>Visit & Tourist Visa</h3><button class="btn-action" onclick="openVisitModal()">Book Now</button></div>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600">
+            <div class="card-body"><h3>Business Visa</h3><button class="btn-action" onclick="openBusinessModal()">Consult Now</button></div>
+        </div>
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1586762413150-da765e921381?q=80&w=600">
+            <div class="card-body"><h3>Passport & Pro CV</h3><button class="btn-action" onclick="openPassportModal()">Get Pro Help</button></div>
         </div>
     </div>
+</div>
 
-    <footer>
-        <div class="footer-logo">AAZ VISA EXPORT</div>
-        <div class="footer-contact">+91 8818852109 | info.aazvisa@gmail.com</div>
-        <div>&copy; 2026 Abhishek Ahirwar - Trusted Visa Expert</div>
-    </footer>
-
-    <div id="commonModal" class="modal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeModal('commonModal')">&times;</span>
-            <h3 id="modalTitle">Registration</h3>
-            <form action="https://formspree.io/f/meeprqpk" method="POST">
-                <input type="hidden" name="Service" id="service_hidden">
-                <input type="text" name="Name" placeholder="Pura Naam" required>
-                <input type="tel" name="WhatsApp" placeholder="WhatsApp Number" required>
-                <button type="submit" class="btn-action">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="visitModal" class="modal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeModal('visitModal')">&times;</span>
-            <h3>Visit Visa (190 Countries)</h3>
-            <form action="https://formspree.io/f/meeprqpk" method="POST">
-                <input type="text" name="Name" placeholder="Pura Naam" required>
-                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
-                <select name="Country" required>
-                    <option value="">Select Country (190+ available)</option>
-                    <option value="All Countries">Apply for any of 190 Countries</option>
-                    <option value="Dubai">Dubai</option>
-                    <option value="Thailand">Thailand</option>
-                    <option value="Europe">Schengen Europe</option>
-                    <option value="USA">USA</option>
-                    <option value="UK">UK</option>
-                </select>
-                <button type="submit" class="btn-action">Book Now</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="businessModal" class="modal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeModal('businessModal')">&times;</span>
-            <h3>Business Visa</h3>
-            <form action="https://formspree.io/f/meeprqpk" method="POST">
-                <input type="text" name="Name" placeholder="Pura Naam" required>
-                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
-                <select name="Business_Country" required>
-                    <option value="Russia">Russia</option>
-                    <option value="Dubai">Dubai</option>
-                    <option value="Other">Other Global Markets</option>
-                </select>
-                <button type="submit" class="btn-action">Enquire Now</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="studyModal" class="modal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeModal('studyModal')">&times;</span>
-            <h3>Study Visa (29+ Countries)</h3>
-            <form action="https://formspree.io/f/meeprqpk" method="POST">
-                <input type="text" name="Name" placeholder="Pura Naam" required>
-                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
-                <select name="Study_Destination" required>
-                    <option value="Italy">Italy</option>
-                    <option value="Russia">Russia</option>
-                    <option value="Singapore">Singapore</option>
-                    <option value="Schengen 29">Schengen (29 Countries)</option>
-                </select>
-                <button type="submit" class="btn-action">Consult Now</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="passportModal" class="modal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeModal('passportModal')">&times;</span>
-            <h3>Passport & CV Services</h3>
-            <form action="https://formspree.io/f/meeprqpk" method="POST">
-                <input type="text" name="Name" placeholder="Pura Naam" required>
-                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
-                <select name="Document_Service" required>
-                    <option value="Passport">Passport New/Renewal</option>
-                    <option value="Europass CV">Europass CV</option>
-                    <option value="ATS CV">ATS Friendly CV</option>
-                    <option value="Dubai CV">Dubai Format CV</option>
-                    <option value="Motivation Letter">Motivation Letter</option>
-                    <option value="Cover Letter">Cover Letter</option>
-                </select>
-                <button type="submit" class="btn-action">Get Pro Help</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function openModal(s) { document.getElementById('service_hidden').value=s; document.getElementById('modalTitle').innerText=s; document.getElementById('commonModal').style.display='flex'; }
-        function openVisitModal() { document.getElementById('visitModal').style.display='flex'; }
-        function openBusinessModal() { document.getElementById('businessModal').style.display='flex'; }
-        function openStudyModal() { document.getElementById('studyModal').style.display='flex'; }
-        function openPassportModal() { document.getElementById('passportModal').style.display='flex'; }
-        function closeModal(id) { document.getElementById(id).style.display='none'; }
- // Ye code Admin Panel aur AI Chatbot ke liye hai
-let currentPattern = ""; 
-function addToPattern(num) { 
-    currentPattern += num; 
-    if(currentPattern === "125") { 
-        document.getElementById('patternLock').style.display = 'none'; 
-        document.getElementById('adminPanel').style.display = 'block'; 
-    } 
-} 
-
-function toggleAI() { 
-    const chat = document.getElementById('aiChat'); 
-    chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex'; 
-}
-    </script>
-    </body>
-</html>
-
-<div id="bookingModal" class="modal">
+<div id="mainModal" class="modal">
     <div class="modal-box">
-        <h3 id="modalTitle" style="text-align:center; color:var(--navy);">Booking Registration</h3>
+        <h3 id="mTitle" style="text-align:center; color:var(--navy);">Registration</h3>
         <form action="https://formspree.io/f/meeprqpk" method="POST">
-            <input type="hidden" name="Service" id="service_hidden">
-            <input type="text" name="Full_Name" placeholder="Aapka Pura Naam" required>
-            <input type="tel" name="WhatsApp_Number" placeholder="WhatsApp No. (+91...)" required>
-            <select name="Destination_Country" required>
-                <option value="">Select Country</option>
-                <option value="Poland">Poland</option>
-                <option value="Italy">Italy</option>
-                <option value="Dubai">Dubai</option>
-                <option value="Thailand">Thailand</option>
-                <option value="USA/Canada/UK">USA / Canada / UK</option>
-                <option value="Schengen">Other Schengen Europe</option>
+            <input type="hidden" name="Service" id="sHidden">
+            <input type="text" name="Name" placeholder="Aapka Naam" required>
+            <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required>
+            <select name="Destination" id="destSelect" style="display:none;">
+                <option value="Poland">Poland</option><option value="Italy">Italy</option><option value="Dubai">Dubai</option>
             </select>
-            <button type="submit" class="btn-action" style="background:var(--navy); color:white; margin-top:10px;">SUBMIT REQUEST</button>
-            <p onclick="closeModal()" style="text-align:center; color:red; cursor:pointer; margin-top:15px; font-weight:bold;">Close (X)</p>
+            <button type="submit" class="btn-action">Submit Details</button>
+            <p onclick="closeModal()" style="text-align:center; color:red; cursor:pointer; margin-top:10px;">Close</p>
         </form>
     </div>
 </div>
 
-<footer>
-    <p style="font-weight:bold; font-size:20px; color:var(--gold);">AAZ VISA EXPORT</p>
-    <p>Contact: +91 8818852109 | Email: info.aazvisa@gmail.com</p>
-    <div style="font-size:30px; margin:20px 0;">
-        <a href="https://wa.me/918818852109" style="color:var(--gold); margin:0 15px;"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.instagram.com/aaz.visa_export" style="color:var(--gold); margin:0 15px;"><i class="fab fa-instagram"></i></a>
+<div id="patternLock" class="pattern-overlay">
+    <h2 style="color:var(--gold);">Secret Access</h2>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
+        <button onclick="addP('1')" style="width:60px; height:60px; border-radius:50%; color:white; background:none; border:1px solid #fff;">1</button>
+        <button onclick="addP('2')" style="width:60px; height:60px; border-radius:50%; color:white; background:none; border:1px solid #fff;">2</button>
+        <button onclick="addP('5')" style="width:60px; height:60px; border-radius:50%; color:white; background:none; border:1px solid #fff;">5</button>
     </div>
-    <p>© 2026 Abhishek Ahirwar - Trusted Visa Expert.</p>
+    <p onclick="document.getElementById('patternLock').style.display='none'" style="color:red; margin-top:20px;">Exit</p>
+</div>
+
+<footer>
+    <div style="font-weight:bold; color:var(--gold);">AAZ VISA EXPORT</div>
+    <p>&copy; 2026 Abhishek Ahirwar - Trusted Visa Expert</p>
 </footer>
 
 <script>
-    function openModal(val) {
-        document.getElementById('bookingModal').style.display = 'block';
-        document.getElementById('modalTitle').innerText = val;
-        document.getElementById('service_hidden').value = val;
+    function openModal(s) { document.getElementById('sHidden').value=s; document.getElementById('mTitle').innerText=s; document.getElementById('mainModal').style.display='flex'; }
+    function closeModal() { document.getElementById('mainModal').style.display='none'; }
+    function openStudyModal() { document.getElementById('destSelect').style.display='block'; openModal('Study Visa'); }
+    function openVisitModal() { document.getElementById('destSelect').style.display='block'; openModal('Visit Visa'); }
+    function openBusinessModal() { openModal('Business Visa'); }
+    function openPassportModal() { openModal('Passport & CV'); }
+    function toggleAI() { alert('AI Assistant Connecting...'); }
+
+    let p = "";
+    function triggerAdmin() { document.getElementById('patternLock').style.display='flex'; p=""; }
+    function addP(n) { p+=n; if(p==="125") window.location.href='admin-aaz.html'; }
+
+    function count(id, max) {
+        let c=0; let e=document.getElementById(id);
+        let i=setInterval(()=>{ if(c<max){ c+=Math.ceil(max/40); if(c>max)c=max; e.innerText=c+"+"; }else clearInterval(i); }, 40);
     }
-    function closeModal() {
-        document.getElementById('bookingModal').style.display = 'none';
-    }
+    window.onload = () => { count('exp', 3); count('visa', 1842); count('clients', 1673); };
 </script>
-
-
 </body>
-</html>
-
-    <div id="holidayModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
-        <div class="modal-box" style="background:white; padding:20px; border-radius:15px; width:90%; max-width:400px; position:relative;">
-            <span onclick="document.getElementById('holidayModal').style.display='none'" style="position:absolute; right:15px; top:10px; cursor:pointer; font-size:24px;">&times;</span>
-            <h3 style="color: #e65100; text-align:center;">Dream Holiday Destinations ✈️</h3>
-            <form action="https://formspree.io/f/meeprqpk" method="POST" style="display:flex; flex-direction:column; gap:10px;">
-                <input type="text" name="Name" placeholder="Aapka Naam" required style="padding:10px; border:1px solid #ccc; border-radius:5px;">
-                <input type="tel" name="WhatsApp" placeholder="WhatsApp No" required style="padding:10px; border:1px solid #ccc; border-radius:5px;">
-                <select name="Destination" required style="padding:10px; border:1px solid #ccc; border-radius:5px;">
-                    <option value="">Kahan Jaana Chahte Hain?</option>
-                    <option value="Dubai">Dubai 🇦🇪</option>
-                    <option value="Thailand">Thailand 🇹🇭</option>
-                    <option value="Malaysia">Malaysia 🇲🇾</option>
-                    <option value="Vietnam">Vietnam 🇻🇳</option>
-                    <option value="Singapore">Singapore 🇸🇬</option>
-                    <option value="Europe 29">Europe (29 Countries) 🇪🇺</option>
-                    <option value="Russia">Russia 🇷🇺</option>
-                    <option value="Other">Other 190+ Countries</option>
-                </select>
-                <button type="submit" style="background:#e65100; color:white; padding:12px; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Get Best Quote</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function openHolidayModal() { document.getElementById('holidayModal').style.display='flex'; }
-    </script>
+    </html>
     
