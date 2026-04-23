@@ -2,68 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AAZ Master Admin Panel</title>
+    <title>AAZ Master Dashboard | Control Tower</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; margin: 0; display: flex; }
-        .sidebar { width: 260px; background: #0b1120; color: white; height: 100vh; padding: 20px; position: fixed; }
-        .main-content { margin-left: 300px; padding: 40px; width: 100%; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { padding: 15px; border-bottom: 1px solid #ddd; text-align: left; }
-        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .btn-approve { background: #28a745; color: white; }
-        .btn-reject { background: #dc3545; color: white; }
-        .btn-edit { background: #daa520; color: black; }
-        #login-overlay { position: fixed; inset: 0; background: #0b1120; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        :root { --gold: #daa520; --navy: #0b1120; --dark: #070b14; --white: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--dark); color: var(--white); display: flex; }
+        
+        /* Sidebar */
+        .sidebar { width: 260px; background: var(--navy); height: 100vh; position: fixed; border-right: 2px solid var(--gold); padding: 20px; }
+        .sidebar h2 { color: var(--gold); text-align: center; border-bottom: 1px solid #1e293b; padding-bottom: 15px; }
+        .nav-item { padding: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .nav-item:hover { background: rgba(218, 165, 32, 0.1); color: var(--gold); }
+        .active { background: var(--gold); color: black !important; font-weight: bold; }
+
+        /* Main Content */
+        .main { margin-left: 300px; padding: 40px; width: calc(100% - 340px); }
+        .card { background: var(--navy); padding: 25px; border-radius: 15px; border: 1px solid #1e293b; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        h3 { color: var(--gold); margin-top: 0; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background: #0f172a; color: var(--gold); text-align: left; padding: 15px; font-size: 14px; }
+        td { padding: 15px; border-bottom: 1px solid #1e293b; font-size: 14px; }
+        
+        /* Status Badges */
+        .badge { padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .bg-green { background: #16a34a; color: white; }
+        .bg-yellow { background: #ca8a04; color: white; }
+        .bg-red { background: #dc2626; color: white; }
+
+        /* Controls */
+        input, select { background: #070b14; border: 1px solid #1e293b; color: white; padding: 10px; border-radius: 5px; margin-right: 10px; }
+        .btn { background: var(--gold); color: black; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        
+        /* Login Overlay */
+        #lock-screen { position: fixed; inset: 0; background: var(--dark); z-index: 10000; display: flex; align-items: center; justify-content: center; text-align: center; }
     </style>
 </head>
 <body>
 
-<div id="login-overlay">
-    <div style="background:white; padding:40px; border-radius:10px; text-align:center;">
-        <h2>AAZ Admin Security</h2>
-        <input type="password" id="pass" placeholder="Enter Master Password" style="padding:10px; width:200px;"><br><br>
-        <button class="btn btn-edit" onclick="checkPass()">Login Access</button>
-        <p onclick="alert('Contact Developer to reset password')" style="font-size:10px; cursor:pointer; margin-top:10px;">Forgot Password?</p>
+<div id="lock-screen">
+    <div style="background: var(--navy); padding: 50px; border-radius: 20px; border: 2px solid var(--gold);">
+        <i class="fas fa-user-shield" style="font-size: 50px; color: var(--gold); margin-bottom: 20px;"></i>
+        <h2>AAZ ADMIN ACCESS</h2>
+        <input type="password" id="master-pass" placeholder="Enter Master Password" style="width: 250px; text-align: center; margin-bottom: 20px;"><br>
+        <button class="btn" onclick="unlock()">Login to Command Center</button>
     </div>
 </div>
 
 <div class="sidebar">
-    <h2>AAZ Dashboard</h2>
-    <p>Admin: Abhishek Ahirwar</p><br>
-    <button class="btn btn-edit" style="width:100%" onclick="changePass()">Change Password</button><br><br>
-    <button class="btn btn-edit" style="width:100%">Edit Website Content</button>
+    <h2>AAZ SYSTEM</h2>
+    <div class="nav-item active"><i class="fas fa-home"></i> Dashboard</div>
+    <div class="nav-item"><i class="fas fa-users"></i> Staff Management</div>
+    <div class="nav-item"><i class="fas fa-file-alt"></i> Candidate Data</div>
+    <div class="nav-item"><i class="fas fa-bullhorn"></i> Website Broadcast</div>
+    <div class="nav-item" style="margin-top: 50px; color: #ef4444;"><i class="fas fa-sign-out-alt"></i> Logout</div>
 </div>
 
-<div class="main-content">
+<div class="main">
     <div class="card">
-        <h3>Generate Employee ID</h3>
-        <input type="text" id="empName" placeholder="Staff Name">
-        <input type="text" id="empCode" placeholder="Assign ID (e.g. AAZ-001)">
-        <button class="btn btn-edit" onclick="addEmp()">Create & Activate ID</button>
+        <h3><i class="fas fa-edit"></i> Update Website Notice</h3>
+        <input type="text" id="notice-text" placeholder="Type message for website visitors..." style="width: 70%;">
+        <button class="btn" onclick="alert('Website Updated Successfully!')">Post Update</button>
     </div>
 
     <div class="card">
-        <h3>Staff Management & Data Tracking</h3>
+        <h3><i class="fas fa-user-plus"></i> Staff Control</h3>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="staff-name" placeholder="Employee Name">
+            <input type="text" id="staff-id" placeholder="Assign Personal ID">
+            <button class="btn" onclick="addStaff()">Activate Staff</button>
+        </div>
         <table>
             <thead>
                 <tr>
                     <th>Staff Name</th>
                     <th>Staff ID</th>
-                    <th>Status</th>
-                    <th>Candidates</th>
-                    <th>Actions</th>
+                    <th>Access Status</th>
+                    <th>Leads</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="staffList">
+            <tbody id="staff-table">
                 <tr>
-                    <td>Ram (Staff)</td>
-                    <td>AAZ-105</td>
-                    <td id="st1" style="color:green; font-weight:bold;">Active</td>
-                    <td><button onclick="viewDocs('Ram')">View 5 Docs</button></td>
+                    <td>Ram Kumar</td>
+                    <td>AAZ-RAM-01</td>
+                    <td><span class="badge bg-green">Active</span></td>
+                    <td>12</td>
+                    <td><button class="btn" style="background:#dc2626; color:white;" onclick="this.parentElement.parentElement.style.opacity='0.3'">Deactivate</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h3><i class="fas fa-database"></i> Candidate Applications</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ref ID</th>
+                    <th>Candidate Name</th>
+                    <th>Service</th>
+                    <th>Documents</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#5021</td>
+                    <td>Suresh Singh</td>
+                    <td>Work Permit (Italy)</td>
+                    <td><i class="fas fa-check-circle" style="color:var(--gold)"></i> Received</td>
+                    <td><span class="badge bg-yellow">Processing</span></td>
                     <td>
-                        <button class="btn btn-approve">Approve</button>
-                        <button class="btn btn-reject" onclick="deactivate('st1')">Deactivate ID</button>
+                        <select onchange="updateStatus(this)">
+                            <option>Change Status</option>
+                            <option>Approved</option>
+                            <option>Rejected</option>
+                            <option>Pending</option>
+                        </select>
                     </td>
                 </tr>
             </tbody>
@@ -72,54 +130,29 @@
 </div>
 
 <script>
-    let masterPass = "AAZ2026";
-    
-    function checkPass() {
-        if(document.getElementById('pass').value === masterPass) {
-            document.getElementById('login-overlay').style.display = 'none';
-        } else { alert("Wrong Password!"); }
-    }
-
-    function addEmp() {
-        let name = document.getElementById('empName').value;
-        let code = document.getElementById('empCode').value;
-        if(name && code) {
-            let row = `<tr><td>${name}</td><td>${code}</td><td style="color:green; font-weight:bold;">Active</td><td>0 Docs</td><td><button class="btn btn-approve">Approve</button> <button class="btn btn-reject">Deactivate</button></td></tr>`;
-            document.getElementById('staffList').innerHTML += row;
-            alert("ID Generated for " + name);
+    function unlock() {
+        const pass = document.getElementById('master-pass').value;
+        if(pass === "AAZ2026") {
+            document.getElementById('lock-screen').style.display = 'none';
+        } else {
+            alert("Unauthorized Access Attempt Blocked!");
         }
     }
 
-    function deactivate(id) {
-        document.getElementById(id).innerText = "Deactivated";
-        document.getElementById(id).style.color = "red";
-        alert("Employee Access Revoked. Data remains safe.");
+    function addStaff() {
+        const name = document.getElementById('staff-name').value;
+        const id = document.getElementById('staff-id').value;
+        if(name && id) {
+            const table = document.getElementById('staff-table');
+            const row = `<tr><td>${name}</td><td>${id}</td><td><span class="badge bg-green">Active</span></td><td>0</td><td><button class="btn" style="background:#dc2626; color:white;">Deactivate</button></td></tr>`;
+            table.innerHTML += row;
+            alert("New Staff ID Generated!");
+        }
     }
 
-    function changePass() {
-        let newP = prompt("Enter New Master Password:");
-        if(newP) { masterPass = newP; alert("Password Updated!"); }
-    }
-
-    function viewDocs(name) {
-        alert("Opening secure folder for " + name + "... All candidate PDFs and Images are stored here.");
+    function updateStatus(select) {
+        alert("Candidate status changed to: " + select.value);
     }
 </script>
 </body>
 </html>
-// Admin Panel ke script mein ye logic add karein
-function approveApplication(candidateName) {
-    let confirmApprove = confirm("Do you want to Approve " + candidateName + "'s application?");
-    if(confirmApprove) {
-        alert(candidateName + " ki application Approve ho gayi hai! Candidate ko portal par 'Approved' dikhai dega.");
-        // Real system mein yahan se email bhi bheja ja sakta hai
-    }
-}
-
-function rejectApplication(candidateName) {
-    let reason = prompt("Reason for rejection:");
-    if(reason) {
-        alert(candidateName + " ki application Reject kar di gayi hai. Reason: " + reason);
-    }
-}
-
