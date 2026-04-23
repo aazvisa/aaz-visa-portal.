@@ -107,3 +107,19 @@
 </script>
 </body>
 </html>
+// Admin Panel ke script mein ye logic add karein
+function approveApplication(candidateName) {
+    let confirmApprove = confirm("Do you want to Approve " + candidateName + "'s application?");
+    if(confirmApprove) {
+        alert(candidateName + " ki application Approve ho gayi hai! Candidate ko portal par 'Approved' dikhai dega.");
+        // Real system mein yahan se email bhi bheja ja sakta hai
+    }
+}
+
+function rejectApplication(candidateName) {
+    let reason = prompt("Reason for rejection:");
+    if(reason) {
+        alert(candidateName + " ki application Reject kar di gayi hai. Reason: " + reason);
+    }
+}
+
