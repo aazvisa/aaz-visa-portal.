@@ -1,232 +1,108 @@
  <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAZ Visa Export - Global Travel Portal</title>
+    <title>AAZ VISA EXPORT | Official Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #daa520; --navy: #001f3f; }
-        body { font-family: 'Poppins', sans-serif; background: #f4f7f6; margin: 0; padding: 0; }
+        :root { --gold: #daa520; --navy: #0b1120; --card-bg: #111827; --text: #ffffff; --bg: #0b1120; }
+        [data-theme="light"] { --navy: #f3f4f6; --card-bg: #ffffff; --text: #000000; --bg: #ffffff; }
+        
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: var(--text); transition: 0.3s; }
+        nav { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--gold); }
+        .logo span { color: var(--gold); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; }
+        
+        .controls { display: flex; gap: 10px; padding: 10px 5%; justify-content: flex-end; background: #000; }
+        .btn-sm { background: var(--gold); border: none; padding: 5px 10px; cursor: pointer; font-weight: bold; border-radius: 4px; }
 
-        header { background: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top:0; z-index: 4000; }
-        .logo-img { width: 70px; mix-blend-mode: multiply; }
+        .hero { height: 70vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?w=1200'); background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; transition: 1s; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 5%; }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid rgba(218,165,32,0.3); text-align: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--gold); }
+        .card i { font-size: 30px; color: var(--gold); margin-bottom: 15px; }
 
-        .hero-section { width: 100%; height: 80vh; position: relative; overflow: hidden; background: #000; }
-        .slides { display: flex; width: 400%; height: 100%; animation: slideShow 20s infinite; }
-        .slide { width: 25%; height: 100%; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        @keyframes slideShow { 
-            0%, 20% { transform: translateX(0%); }
-            25%, 45% { transform: translateX(-25%); }
-            50%, 70% { transform: translateX(-50%); }
-            75%, 100% { transform: translateX(-75%); }
-        }
+        .form-container { background: var(--card-bg); padding: 40px; border-radius: 15px; max-width: 800px; margin: 40px auto; border: 1px solid var(--gold); }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; background: rgba(0,0,0,0.1); border: 1px solid #444; color: var(--text); border-radius: 6px; }
+        .submit-btn { background: var(--gold); color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 6px; }
 
-        .hero-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; width: 100%; }
-        .founder-img { width: 130px; height: 130px; border-radius: 50%; border: 4px solid var(--gold); margin-bottom: 10px; }
-
-        .stats-bar { background: var(--navy); color: white; display: flex; justify-content: space-around; padding: 20px; border-bottom: 4px solid var(--gold); }
-        .stat-box h2 { color: var(--gold); margin: 0; }
-
-        .container { padding: 30px 15px; max-width: 1200px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .service-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee; }
-        .service-card img { width: 100%; height: 180px; object-fit: cover; }
-        .card-body { padding: 15px; }
-        .btn-action { background: var(--gold); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
-
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; }
-        .modal-box { background: white; width: 90%; max-width: 400px; padding: 25px; border-radius: 20px; max-height: 90vh; overflow-y: auto; }
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        label { display: block; text-align: left; font-size: 12px; color: var(--navy); font-weight: bold; margin-top: 5px; }
+        .map-container { width: 100%; height: 450px; border-top: 4px solid var(--gold); }
+        .whatsapp-btn { position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; }
     </style>
 </head>
 <body>
 
-<header>
-    <div style="display:flex; align-items:center; gap:10px;">
-        <img src="1000070395.webp" class="logo-img">
-        <span style="font-weight:900; color:var(--navy);">AAZ VISA EXPORT</span>
-    </div>
-    <div style="text-align:right; font-size:12px;">+91 8818852109</div>
-</header>
-
-<div class="hero-section">
-    <div class="slides">
-        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1200"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200"></div>
-    </div>
-    <div class="hero-overlay">
-        <img src="1000070399.webp" class="founder-img">
-        <h1 style="text-shadow: 2px 2px 4px #000;">Abhishekk Ahirwar</h1>
-        <p style="background:rgba(0,0,0,0.5); display:inline-block; padding:5px 10px;">Founder & CEO</p>
-    </div>
+<div class="controls">
+    <button class="btn-sm" onclick="toggleLang()">Hindi / Eng</button>
+    <button class="btn-sm" onclick="toggleTheme()">🌓 Mode</button>
 </div>
 
-<div class="stats-bar">
-    <div class="stat-box"><h2 id="exp">0</h2><p>Years Exp.</p></div>
-    <div class="stat-box"><h2 id="visa">0</h2><p>Visas</p></div>
-    <div class="stat-box"><h2 id="clients">0</h2><p>Clients</p></div>
-</div>
-
-<div style="text-align:center; padding: 20px;">
-    <a href="portal.html" style="background:var(--navy); color:var(--gold); padding:15px 30px; text-decoration:none; border-radius:50px; font-weight:bold; border:2px solid var(--gold);">OPEN CANDIDATE PORTAL</a>
-</div>
-
-<div class="container">
-    <div class="grid">
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600">
-            <div class="card-body"><h3>Work Permit Visa</h3><button class="btn-action" onclick="openForm('Work Permit')">Apply Now</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1523050335456-adabc08a9f3c?q=80&w=600">
-            <div class="card-body"><h3>Study Visa</h3><button class="btn-action" onclick="openForm('Study Visa')">Apply Now</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=600">
-            <div class="card-body"><h3>Tourist Visa</h3><button class="btn-action" onclick="openForm('Tourist Visa')">Apply Now</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=600">
-            <div class="card-body"><h3>Visit Visa</h3><button class="btn-action" onclick="openForm('Visit Visa')">Apply Now</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600">
-            <div class="card-body"><h3>Business Visa</h3><button class="btn-action" onclick="openForm('Business Visa')">Apply Now</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1562564055-71e051d33c19?q=80&w=600">
-            <div class="card-body"><h3>VFS Appointment</h3><button class="btn-action" onclick="openForm('VFS Appointment')">Book Slots</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?q=80&w=600">
-            <div class="card-body"><h3>Flight Booking</h3><button class="btn-action" onclick="openFlightForm()">Book Now</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=600">
-            <div class="card-body"><h3>Medical Insurance</h3><button class="btn-action" onclick="openForm('Medical Insurance')">Get Cover</button></div>
-        </div>
-
-        <div class="service-card">
-            <img src="https://images.unsplash.com/photo-1586762413150-da765e921381?q=80&w=600">
-            <div class="card-body"><h3>Passport & CV</h3><button class="btn-action" onclick="openCVForm()">Select Service</button></div>
-        </div>
+<nav>
+    <div class="logo"><span>AAZ</span> VISA EXPORT</div>
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="admin.html" style="color:var(--gold)">Admin Login</a>
     </div>
-</div>
+</nav>
 
-<div id="mainModal" class="modal">
-    <div class="modal-box">
-        <h3 id="mTitle" style="text-align:center; color:var(--navy);">Registration</h3>
-        <form action="https://formspree.io/f/meeprqpk" method="POST">
-            <input type="hidden" name="Service" id="sHidden">
-            <input type="text" name="Name" placeholder="Full Name" required>
-            <input type="tel" name="WhatsApp" placeholder="WhatsApp Number" required>
-            
-            <div id="countryList">
-                <label>Select Destination:</label>
-                <select name="Country">
-                    <option value="Poland">Poland 🇵🇱</option>
-                    <option value="Italy">Italy 🇮🇹</option>
-                    <option value="USA">USA 🇺🇸</option>
-                    <option value="Canada">Canada 🇨🇦</option>
-                    <option value="Australia">Australia🇭🇲</option>
-                    <option value="New Zealand">New Zealand🇳🇿</option>
-                    <option value="Dubai">Dubai 🇦🇪</option>
-                    <option value="Hungary">Hungary 🇭🇺</option>
-                    <option value="Russia">Russia 🇷🇺</option>
-                    <option value="Malta">Malta </option>
-                    <option value="UK">UK🇬🇧</option>
-                    <option value="Thailand">Thailand 🇹🇭</option>
-                    <option value="Malaysia">Malaysia 🇲🇾</option>
-                    <option value="Vietnam">Vietnam 🇻🇳</option>
-                    <option value="Singapore">Singapore 🇸🇬</option>
-                     <option value="Nepal">Nepal 🇳🇵</option>
-                    <option value="Sri Lanka">Sri Lanka 🇱🇰</option>
-                    <option value="Laos">Laos 🇱🇦</option>
-                    <option value="Azerbaijan">Azerbaijan 🇦🇿</option>
-                    <option value="Georgia">Georgia 🇬🇪</option>
-                    <option value="Cambodia">Cambodia 🇰🇭</option>
-                    <option value="Egypt">Egypt 🇪🇬</option>
-                    <option value="France">France 🇫🇷</option>
-                    <option value="Spain">Spain 🇪🇸</option>
-                    <option value="Japan">Japan 🇯🇵</option>
-                    <option value="Switzerland">Switzerland 🇨🇭</option>
-                    <option value="Turkey">Turkey 🇹🇷</option>
-                    <option value="chin">Chin🇨🇳</option>
-                    <option value="Hong Kong">Hong Kong</option>
-                    <option value="Philippines">Philippines</option>
-                    <option value="South Africa">South Africa</option>
-                    <option value="Mexico">Mexico🇲🇽</option>
-                    <option value="Europe29">Europe (29 Countries)</option>
-                    <option value="Other">Other 190+ Countries</option>
-                </select>
-            </div>
-
-            <div id="flightList" style="display:none;">
-                <label>Flying From:</label>
-                <input type="text" name="From_City" placeholder="City/India" value="India">
-                <label>Flying To:</label>
-                <input type="text" name="To_Country" placeholder="Destination Country">
-            </div>
-
-            <div id="cvList" style="display:none;">
-                <label>Document Service:</label>
-                <select name="Document">
-                    <option value="New Passport">New Passport</option>
-                    <option value="Europass CV">Europass CV</option>
-                    <option value="ATS CV">ATS CV</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn-action" style="margin-top:15px;">Submit Details</button>
-            <p onclick="closeModal()" style="text-align:center; color:red; cursor:pointer; font-weight:bold; margin-top:15px;">Cancel</p>
-        </form>
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <h1 id="main-title">Your Gateway to <span>190+ Countries</span></h1>
+        <p id="sub-title">Expert Visa Consultancy for Work, Study & Travel.</p>
     </div>
+</section>
+
+<div class="grid" id="services">
+    <div class="card"><i class="fas fa-plane"></i><h3>Tourist Visa</h3><p>Global tourism made easy.</p></div>
+    <div class="card"><i class="fas fa-briefcase"></i><h3>Work Permit</h3><p>Poland, Italy & Europe specialist.</p></div>
+    <div class="card"><i class="fas fa-university"></i><h3>Study Visa</h3><p>International education help.</p></div>
+    <div class="card"><i class="fas fa-calendar-check"></i><h3>VFS Appointment</h3><p>Fast track slot booking.</p></div>
+    <div class="card"><i class="fas fa-file-invoice"></i><h3>Passport & CV</h3><p>Professional CV making.</p></div>
+    <div class="card"><i class="fas fa-shield-alt"></i><h3>Travel Insurance</h3><p>Full medical coverage.</p></div>
+    <div class="card"><i class="fas fa-suitcase-rolling"></i><h3>Holiday Package</h3><p>Luxury & Budget tours.</p></div>
+    <div class="card"><i class="fas fa-handshake"></i><h3>Business Visa</h3><p>Corporate travel solutions.</p></div>
 </div>
+
+<div class="form-container">
+    <h2 style="text-align:center" id="form-head">Start Your Application</h2>
+    <form action="https://formspree.io/f/meeprqpk" method="POST" enctype="multipart/form-data">
+        <input type="text" name="EmployeeID" placeholder="Enter Employee ID (If any)">
+        <input type="text" name="Name" placeholder="Full Name" required>
+        <input type="tel" name="Phone" placeholder="Mobile Number" required>
+        <select name="Service">
+            <option>Work Permit</option>
+            <option>Business Visa</option>
+            <option>Holiday Package</option>
+            <option>Study Visa</option>
+        </select>
+        <p style="font-size: 12px; margin-top:10px;">Upload Passport (Front/Back)</p>
+        <input type="file" name="Docs" multiple>
+        <button type="submit" class="submit-btn">Submit to Abhishek Ahirwar</button>
+    </form>
+</div>
+
+<div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57924.36423528751!2d78.8041538318182!3d24.75181744214963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3970926d9c66914b%3A0x67396a84f391e4f4!2sTikamgarh%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1713910000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<a href="https://wa.me/918818852109" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
 
 <script>
-    function openForm(s) { 
-        document.getElementById('sHidden').value=s; 
-        document.getElementById('mTitle').innerText=s; 
-        document.getElementById('cvList').style.display='none';
-        document.getElementById('flightList').style.display='none';
-        document.getElementById('countryList').style.display='block';
-        document.getElementById('mainModal').style.display='flex'; 
+    function toggleTheme() {
+        document.body.dataset.theme = document.body.dataset.theme === "light" ? "dark" : "light";
     }
-    function openCVForm() {
-        document.getElementById('sHidden').value='Passport & CV';
-        document.getElementById('mTitle').innerText='Passport & CV Service';
-        document.getElementById('countryList').style.display='none';
-        document.getElementById('flightList').style.display='none';
-        document.getElementById('cvList').style.display='block';
-        document.getElementById('mainModal').style.display='flex';
+    function toggleLang() {
+        const title = document.getElementById('main-title');
+        if(title.innerText.includes("Gateway")) {
+            title.innerHTML = "<span>190+ देशों</span> के लिए आपका रास्ता";
+            document.getElementById('form-head').innerText = "आवेदन शुरू करें";
+        } else {
+            title.innerHTML = "Your Gateway to <span>190+ Countries</span>";
+            document.getElementById('form-head').innerText = "Start Your Application";
+        }
     }
-    function openFlightForm() {
-        document.getElementById('sHidden').value='Flight Booking';
-        document.getElementById('mTitle').innerText='Flight Booking';
-        document.getElementById('countryList').style.display='none';
-        document.getElementById('cvList').style.display='none';
-        document.getElementById('flightList').style.display='block';
-        document.getElementById('mainModal').style.display='flex';
-    }
-    function closeModal() { document.getElementById('mainModal').style.display='none'; }
-
-    function count(id, max) {
-        let c=0; let e=document.getElementById(id);
-        let i=setInterval(()=>{ if(c<max){ c+=Math.ceil(max/40); if(c>max)c=max; e.innerText=c+"+"; }else clearInterval(i); }, 40);
-    }
-    window.onload = () => { count('exp', 3); count('visa', 1842); count('clients', 1673); };
 </script>
 </body>
 </html>
