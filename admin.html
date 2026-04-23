@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AAZ Master Admin Panel</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; margin: 0; display: flex; }
+        .sidebar { width: 260px; background: #0b1120; color: white; height: 100vh; padding: 20px; position: fixed; }
+        .main-content { margin-left: 300px; padding: 40px; width: 100%; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 15px; border-bottom: 1px solid #ddd; text-align: left; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-approve { background: #28a745; color: white; }
+        .btn-reject { background: #dc3545; color: white; }
+        .btn-edit { background: #daa520; color: black; }
+        #login-overlay { position: fixed; inset: 0; background: #0b1120; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body>
+
+<div id="login-overlay">
+    <div style="background:white; padding:40px; border-radius:10px; text-align:center;">
+        <h2>AAZ Admin Security</h2>
+        <input type="password" id="pass" placeholder="Enter Master Password" style="padding:10px; width:200px;"><br><br>
+        <button class="btn btn-edit" onclick="checkPass()">Login Access</button>
+        <p onclick="alert('Contact Developer to reset password')" style="font-size:10px; cursor:pointer; margin-top:10px;">Forgot Password?</p>
+    </div>
+</div>
+
+<div class="sidebar">
+    <h2>AAZ Dashboard</h2>
+    <p>Admin: Abhishek Ahirwar</p><br>
+    <button class="btn btn-edit" style="width:100%" onclick="changePass()">Change Password</button><br><br>
+    <button class="btn btn-edit" style="width:100%">Edit Website Content</button>
+</div>
+
+<div class="main-content">
+    <div class="card">
+        <h3>Generate Employee ID</h3>
+        <input type="text" id="empName" placeholder="Staff Name">
+        <input type="text" id="empCode" placeholder="Assign ID (e.g. AAZ-001)">
+        <button class="btn btn-edit" onclick="addEmp()">Create & Activate ID</button>
+    </div>
+
+    <div class="card">
+        <h3>Staff Management & Data Tracking</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Staff Name</th>
+                    <th>Staff ID</th>
+                    <th>Status</th>
+                    <th>Candidates</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="staffList">
+                <tr>
+                    <td>Ram (Staff)</td>
+                    <td>AAZ-105</td>
+                    <td id="st1" style="color:green; font-weight:bold;">Active</td>
+                    <td><button onclick="viewDocs('Ram')">View 5 Docs</button></td>
+                    <td>
+                        <button class="btn btn-approve">Approve</button>
+                        <button class="btn btn-reject" onclick="deactivate('st1')">Deactivate ID</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    let masterPass = "AAZ2026";
+    
+    function checkPass() {
+        if(document.getElementById('pass').value === masterPass) {
+            document.getElementById('login-overlay').style.display = 'none';
+        } else { alert("Wrong Password!"); }
+    }
+
+    function addEmp() {
+        let name = document.getElementById('empName').value;
+        let code = document.getElementById('empCode').value;
+        if(name && code) {
+            let row = `<tr><td>${name}</td><td>${code}</td><td style="color:green; font-weight:bold;">Active</td><td>0 Docs</td><td><button class="btn btn-approve">Approve</button> <button class="btn btn-reject">Deactivate</button></td></tr>`;
+            document.getElementById('staffList').innerHTML += row;
+            alert("ID Generated for " + name);
+        }
+    }
+
+    function deactivate(id) {
+        document.getElementById(id).innerText = "Deactivated";
+        document.getElementById(id).style.color = "red";
+        alert("Employee Access Revoked. Data remains safe.");
+    }
+
+    function changePass() {
+        let newP = prompt("Enter New Master Password:");
+        if(newP) { masterPass = newP; alert("Password Updated!"); }
+    }
+
+    function viewDocs(name) {
+        alert("Opening secure folder for " + name + "... All candidate PDFs and Images are stored here.");
+    }
+</script>
+</body>
+</html>
