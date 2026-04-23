@@ -6,6 +6,10 @@
     <title>AAZ Visa Export - Global Travel Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        #adminPanel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #001f3f; color: white; z-index: 10000; overflow-y: auto; padding: 20px; }
+.pattern-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 11000; flex-direction: column; align-items: center; justify-content: center; color: white; }
+#aiChat { position: fixed; bottom: 90px; right: 20px; width: 300px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 4500; display: none; flex-direction: column; border: 2px solid #daa520; }
+        
         :root { --gold: #daa520; --navy: #001f3f; --accent: #ffcc00; }
         body { font-family: 'Poppins', sans-serif; background: #f4f7f6; margin: 0; padding: 0; overflow-x: hidden; }
 
@@ -70,12 +74,6 @@
         
         footer { background: var(--navy); color: white; padding: 40px 20px; text-align: center; }
     </style>
-    
-    /* Secret Admin Panel & AI Chat Style */
-#adminPanel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #001f3f; color: white; z-index: 10000; overflow-y: auto; padding: 20px; }
-.pattern-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 11000; flex-direction: column; align-items: center; justify-content: center; color: white; }
-#aiChat { position: fixed; bottom: 90px; right: 20px; width: 300px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 4500; display: none; flex-direction: column; border: 2px solid #daa520; }
-.chat-header { background: #001f3f; color: white; padding: 10px; border-radius: 13px 13px 0 0; display: flex; justify-content: space-between; }
     
 </head>
 <body>
@@ -301,8 +299,22 @@
         function openStudyModal() { document.getElementById('studyModal').style.display='flex'; }
         function openPassportModal() { document.getElementById('passportModal').style.display='flex'; }
         function closeModal(id) { document.getElementById(id).style.display='none'; }
+ // Ye code Admin Panel aur AI Chatbot ke liye hai
+let currentPattern = ""; 
+function addToPattern(num) { 
+    currentPattern += num; 
+    if(currentPattern === "125") { 
+        document.getElementById('patternLock').style.display = 'none'; 
+        document.getElementById('adminPanel').style.display = 'block'; 
+    } 
+} 
+
+function toggleAI() { 
+    const chat = document.getElementById('aiChat'); 
+    chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex'; 
+}
     </script>
-</body>
+    </body>
 </html>
 
 <div id="bookingModal" class="modal">
@@ -347,18 +359,7 @@
         document.getElementById('bookingModal').style.display = 'none';
     }
 </script>
-let currentPattern = "";
-function addToPattern(num) {
-    currentPattern += num;
-    if(currentPattern === "125") { // Ye aapka secret code hai
-        document.getElementById('patternLock').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-    }
-}
-function toggleAI() {
-    const chat = document.getElementById('aiChat');
-    chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
-}
+
 
 </body>
 </html>
