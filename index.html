@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #daa520; --navy: #001f3f; --light-gold: #ffcc00; }
-        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; margin: 0; padding: 0; overflow-x: hidden; }
 
         /* Full Width Slider Section */
-        .hero-section { position: relative; width: 100%; height: 90vh; overflow: hidden; background: #000; }
-        .slides { display: flex; width: 500%; height: 100%; animation: slideAnim 25s infinite; }
+        .hero-section { position: relative; width: 100%; height: 85vh; overflow: hidden; background: #000; }
+        .slides { display: flex; width: 500%; height: 100%; animation: slideAnim 20s infinite; }
         .slide { width: 20%; height: 100%; position: relative; }
         .slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
         @keyframes slideAnim { 
@@ -21,134 +21,197 @@
             75%, 95% { transform: translateX(-60%); }
         }
 
-        .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 90%; }
-        .founder-pfp { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--gold); box-shadow: 0 0 20px rgba(218, 165, 32, 0.5); margin-bottom: 15px; }
+        .hero-content { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 95%; }
+        .founder-pfp { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 25px rgba(218, 165, 32, 0.6); margin-bottom: 15px; }
 
         /* Stats Dashboard */
-        .stats-dashboard { background: var(--navy); color: white; display: flex; justify-content: space-around; padding: 25px 10px; border-top: 4px solid var(--gold); margin-top: -5px; }
-        .stat-box h2 { color: var(--gold); margin: 0; font-size: 28px; }
-        .stat-box p { margin: 0; font-size: 12px; opacity: 0.8; }
+        .stats-dashboard { background: var(--navy); color: white; display: flex; justify-content: space-around; padding: 25px 10px; border-top: 4px solid var(--gold); }
+        .stat-box h2 { color: var(--gold); margin: 0; font-size: 26px; }
+        .stat-box p { margin: 5px 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Portal Button */
-        .portal-btn { display: block; width: fit-content; margin: 25px auto; background: linear-gradient(45deg, #004080, #001f3f); color: var(--gold); padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; border: 2px solid var(--gold); }
+        .portal-btn { display: block; width: fit-content; margin: 30px auto; background: linear-gradient(45deg, #004080, #001f3f); color: var(--gold); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; border: 2px solid var(--gold); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
         /* Services Grid */
         .container { padding: 40px 15px; max-width: 1200px; margin: auto; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; border: 1px solid #eee; transition: 0.4s; }
         .card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .apply-btn { background: var(--gold); color: black; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .card img { width: 100%; height: 210px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .apply-btn { background: var(--gold); color: black; border: none; padding: 14px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-        /* Forms / Modals */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: white; padding: 30px; border-radius: 20px; width: 100%; max-width: 450px; position: relative; }
-        select, input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; }
+        /* Modal / Pop-up */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: white; padding: 30px; border-radius: 25px; width: 100%; max-width: 450px; position: relative; }
+        select, input { width: 100%; padding: 14px; margin: 12px 0; border: 1px solid #ddd; border-radius: 10px; font-size: 15px; box-sizing: border-box; }
+        label { font-weight: bold; color: var(--navy); display: block; margin-top: 10px; text-align: left; }
     </style>
 </head>
 <body>
 
 <div class="hero-section">
     <div class="slides">
-        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" alt="Paris"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200" alt="Dubai"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1200" alt="India"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200" alt="USA"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?q=80&w=1200"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200"></div>
     </div>
     <div class="hero-content">
         <img src="1000070399.webp" class="founder-pfp">
-        <h1>Abhishekk Ahirwar</h1>
-        <p>Founder & CEO - AAZ Visa Export</p>
+        <h1 style="margin:0; font-size: 32px;">Abhishekk Ahirwar</h1>
+        <p style="margin:5px 0; font-weight:bold; color: var(--gold);">FOUNDER & CEO - AAZ VISA EXPORT</p>
     </div>
 </div>
 
 <div class="stats-dashboard">
-    <div class="stat-box"><h2>3+</h2><p>Years Exp.</p></div>
-    <div class="stat-box"><h2>1842+</h2><p>Visas Issued</p></div>
-    <div class="stat-box"><h2>1673+</h2><p>Happy Clients</p></div>
+    <div class="stat-box"><h2 id="st_exp">0</h2><p>Years Exp.</p></div>
+    <div class="stat-box"><h2 id="st_visa">0</h2><p>Visas Issued</p></div>
+    <div class="stat-box"><h2 id="st_client">0</h2><p>Happy Clients</p></div>
 </div>
 
-<a href="portal.html" class="portal-btn"><i class="fas fa-lock"></i> OPEN CANDIDATE PORTAL</a>
+<a href="portal.html" class="portal-btn"><i class="fas fa-user-shield"></i> OPEN CANDIDATE PORTAL</a>
 
 <div class="container">
-    <h2 style="text-align:center; color:var(--navy); margin-bottom:40px;">Hamari Specialist Services</h2>
+    <h2 style="text-align:center; color:var(--navy); margin-bottom:40px; border-bottom: 2px solid var(--gold); display: inline-block; width: 100%; padding-bottom: 10px;">Hamari Specialist Services</h2>
     <div class="grid">
         <div class="card">
             <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600">
-            <div class="card-body"><h3>Work Permit Visa</h3><p>Europe & Gulf Specialist</p>
-            <button class="apply-btn" onclick="openForm('Work Permit')">Choose Country</button></div>
+            <div class="card-body">
+                <h3>Work Permit Visa</h3>
+                <p>Poland, Italy, Malta & Gulf Specialist</p>
+                <button class="apply-btn" onclick="openForm('Work Permit Visa')">Choose Country</button>
+            </div>
         </div>
 
         <div class="card" style="border: 2px solid #ff4500;">
             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600">
-            <div class="card-body"><h3>Holiday Packages 🌴</h3><p>190+ Countries Available</p>
-            <button class="apply-btn" style="background:#ff4500; color:white;" onclick="openForm('Holiday Package')">Plan My Trip</button></div>
+            <div class="card-body">
+                <h3 style="color:#ff4500;">Holiday Packages 🌴</h3>
+                <p>Explore 190+ Countries Worldwide</p>
+                <button class="apply-btn" style="background:#ff4500; color:white;" onclick="openForm('Holiday Package')">Plan My Trip</button>
+            </div>
         </div>
 
-        <div class="card">
+        <div class="card" style="border: 2px solid var(--gold);">
             <img src="https://images.unsplash.com/photo-1586762413150-da765e921381?q=80&w=600">
-            <div class="card-body"><h3>Passport & Pro CV</h3><p>Europass & ATS Specialist</p>
-            <button class="apply-btn" onclick="openCVForm()">Select Format</button></div>
+            <div class="card-body">
+                <h3>Passport & Pro CV</h3>
+                <p>Europass, ATS & Dubai Format CV</p>
+                <button class="apply-btn" onclick="openCVForm()">Get Pro Help</button>
+            </div>
         </div>
     </div>
 </div>
 
 <div id="formModal" class="modal">
     <div class="modal-content">
-        <h3 id="formTitle">Registration</h3>
+        <h3 id="formTitle" style="text-align:center; color:var(--navy); margin-top:0;">Registration</h3>
         <form action="https://formspree.io/f/meeprqpk" method="POST">
             <input type="hidden" name="Service" id="serviceType">
-            <input type="text" name="Name" placeholder="Full Name" required>
-            <input type="tel" name="WhatsApp" placeholder="WhatsApp Number" required>
             
-            <div id="countryOption">
-                <label>Select Country:</label>
+            <input type="text" name="Name" placeholder="Aapka Pura Naam" required>
+            <input type="tel" name="WhatsApp" placeholder="WhatsApp No (+91...)" required>
+            
+            <div id="countryBox" style="display:none;">
+                <label>Destination Country:</label>
                 <select name="Country">
                     <option value="Poland">Poland 🇵🇱</option>
                     <option value="Italy">Italy 🇮🇹</option>
-                    <option value="Hungary">Hungary 🇭🇺</option>
+                    <option value="Malta">Malta 🇲🇹</option>
                     <option value="Dubai">Dubai 🇦🇪</option>
+                 <option value="Thailand">Thailand 🇹🇭</option>
+                    <option value="Vietnam">Vietnam 🇻🇳</option>
+                    <option value="USA">USA 🇺🇸</option>
+                    <option value="UK">UK 🇬🇧</option><option value="Malaysia">Malaysia 🇲🇾</option>
+                    <option value="Vietnam">Vietnam 🇻🇳</option>
+                    <option value="Singapore">Singapore 🇸🇬</option>
+                    <option value="Europe 29">Europe (29 Countries) 🇪🇺</option>
                     <option value="Russia">Russia 🇷🇺</option>
+                    <option value="Other">Other 190+ Countries</option>
+                 </select>
+                <button type="submit" style="background:#e65100; color:white; padding:12px; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Get Best Quote</button>
+            </form>
+        </div>
+                 </div>
                     <option value="Other">Other (190+ Countries)</option>
                 </select>
             </div>
 
-            <div id="cvOption" style="display:none;">
-                <label>Service Type:</label>
+            <div id="cvBox" style="display:none;">
+                <label>Select Document Service:</label>
                 <select name="Document_Type">
                     <option value="New Passport">Apply New Passport</option>
-                    <option value="Europass CV">Europass CV Format</option>
-                    <option value="ATS CV">ATS Friendly CV</option>
+                    <option value="Passport Renewal">Passport Renewal</option>
+                    <option value="Europass CV">Europass CV (Europe Format)</option>
+                    <option value="ATS CV">ATS Friendly CV (Global)</option>
+                    <option value="Dubai CV">Dubai Format CV</option>
                     <option value="Cover Letter">Professional Cover Letter</option>
                 </select>
             </div>
 
-            <button type="submit" class="apply-btn">Submit Request</button>
-            <p style="color:red; cursor:pointer; text-align:center;" onclick="closeForm()">Cancel</p>
+            <button type="submit" class="apply-btn" style="margin-top:15px;">Send Inquiry</button>
+            <p style="color:red; cursor:pointer; text-align:center; font-weight:bold; margin-top:15px;" onclick="closeForm()">Cancel / Close</p>
         </form>
     </div>
 </div>
 
 <script>
+    // Stats Counter
+    function runCounter(id, target) {
+        let c = 0;
+        let el = document.getElementById(id);
+        let itv = setInterval(() => {
+            if(c < target) {
+                c += Math.ceil(target/40);
+                if(c > target) c = target;
+                el.innerText = c + "+";
+            } else { clearInterval(itv); }
+        }, 40);
+    }
+
+    window.onload = () => {
+        runCounter('st_exp', 3);
+        runCounter('st_visa', 1842);
+        runCounter('st_client', 1673);
+    };
+
+    // Modal Control
     function openForm(service) {
         document.getElementById('serviceType').value = service;
         document.getElementById('formTitle').innerText = service;
-        document.getElementById('cvOption').style.display = 'none';
-        document.getElementById('countryOption').style.display = 'block';
+        
+        // Reset and Show Country Dropdown
+        document.getElementById('cvBox').style.display = 'none';
+        document.getElementById('countryBox').style.display = 'block';
+        
         document.getElementById('formModal').style.display = 'flex';
     }
 
     function openCVForm() {
-        document.getElementById('serviceType').value = "Passport & CV";
+        document.getElementById('serviceType').value = "Passport & CV Specialist";
         document.getElementById('formTitle').innerText = "Passport & CV Services";
-        document.getElementById('countryOption').style.display = 'none';
-        document.getElementById('cvOption').style.display = 'block';
+        
+        // Show CV Dropdown, Hide Country
+        document.getElementById('countryBox').style.display = 'none';
+        document.getElementById('cvBox').style.display = 'block';
+        
         document.getElementById('formModal').style.display = 'flex';
     }
 
-    function closeForm() { document.getElementById('formModal').style.display = 'none'; }
+    function closeForm() {
+        document.getElementById('formModal').style.display = 'none';
+    }
 </script>
 
 </body>
 </html>
+
+                    
+                    
+                 
+                    
+                    
+                 
+                    
+                
