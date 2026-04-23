@@ -136,3 +136,23 @@
 
 </body>
 </html>
+<script>
+    // Form submit hone par automatic Tracking ID generate karne ka system
+    document.querySelector('form').onsubmit = function(e) {
+        // Ek unique 4 digit Tracking ID banana (Example: AAZ-4521)
+        const randomNumber = Math.floor(1000 + Math.random() * 9000);
+        const trackingID = "AAZ-" + randomNumber;
+        
+        // Is ID ko form mein add karna taaki aapko email (Formspree) mein mil jaye
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'Tracking_ID';
+        hiddenInput.value = trackingID;
+        this.appendChild(hiddenInput);
+
+        // Candidate ko unki ID dikhana
+        alert("Shukriya! Aapka form submit ho gaya hai.\nAapka Tracking Number hai: " + trackingID + "\nIse sambhal kar rakhein.");
+    };
+</script>
+
+
