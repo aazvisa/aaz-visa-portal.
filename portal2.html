@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Portal - AAZ Visa Export</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans">
+    <nav class="bg-[#001f3f] p-4 text-white flex justify-between items-center shadow-lg">
+        <h1 class="font-bold text-xl text-[#daa520]">AAZ PORTAL</h1>
+        <a href="index.html" class="text-sm border border-white/30 px-3 py-1 rounded">Back to Site</a>
+    </nav>
+
+    <div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-xl border-t-4 border-[#daa520]">
+        <div id="loginSection">
+            <h2 class="text-2xl font-bold text-center text-[#001f3f] mb-6">Candidate Login</h2>
+            <p class="text-gray-500 text-center mb-6">Apna registered WhatsApp no. daalein</p>
+            <input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX" class="w-full p-4 border rounded-xl mb-4 focus:outline-none focus:ring-2 focus:ring-[#daa520]">
+            <button onclick="checkStatus()" class="w-full bg-[#001f3f] text-white py-4 rounded-xl font-bold hover:bg-blue-900 transition">Track Application</button>
+        </div>
+
+        <div id="dashboardSection" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="font-bold text-lg">Hello, <span id="userName">Abhishekk</span></h3>
+                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">In-Progress</span>
+            </div>
+            
+            <div class="space-y-4 mb-8">
+                <div class="flex items-center text-green-600 font-medium"><i class="fas fa-check-circle mr-2"></i> Documents Submitted</div>
+                <div class="flex items-center text-blue-600 font-medium"><i class="fas fa-spinner fa-spin mr-2"></i> VFS Appointment Pending</div>
+                <div class="flex items-center text-gray-400 font-medium"><i class="fas fa-circle mr-2"></i> Visa Granted</div>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl border-2 border-dashed border-gray-300">
+                <label class="block text-sm font-bold mb-2">Scan & Upload Passport (Front)</label>
+                <input type="file" class="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-[#daa520] file:text-white">
+                <button class="mt-4 w-full bg-green-600 text-white py-2 rounded-lg font-bold">Submit Documents</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkStatus() {
+            // Yahan logic aayega backend se data check karne ka
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('dashboardSection').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+
