@@ -164,5 +164,168 @@
         alert("Shukriya! Aapka form submit ho gaya hai.\nAapka Tracking Number hai: " + trackingID + "\nIse sambhal kar rakhein.");
     };
 </script>
+<section id="about" style="padding: 80px 5%; background: var(--dark-card); border-top: 2px solid var(--gold);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <h2 style="color: var(--gold); font-size: 2.5rem; text-align: center;">About <span>AAZ Visa Export</span></h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; align-items: center;">
+            <div style="flex: 1; min-width: 300px;">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #d1d5db;">
+                    Welcome to <b>AAZ Visa Export</b>, your most trusted partner in international mobility. Led by our Founder & CEO, <b>Abhishekk Ahirwar</b>, we bridge the gap between your dreams and global opportunities. Based in Tikamgarh, MP, we specialize in high-success visa processing for over 190 countries.
+                </p>
+                <ul style="list-style: none; padding: 0; color: var(--gold); font-weight: bold; line-height: 2;">
+                    <li><i class="fas fa-check-circle"></i> ISO Certified Process Tracking</li>
+                    <li><i class="fas fa-check-circle"></i> Specialist in Italy, Poland & Hungary Work Permits</li>
+                    <li><i class="fas fa-check-circle"></i> 100% Legal & Document Transparency</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated Support for Students & Professionals</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 300px; background: #000; padding: 20px; border-radius: 15px; border: 1px solid var(--gold);">
+                <h4 style="color:var(--gold)">Message from CEO</h4>
+                <p style="font-style: italic; color: #9ca3af;">"Humara maksad sirf visa lagwana nahi, balki aapke bhavishya ko ek sahi disha dena hai. AAZ Visa Export par bharosa aapka, zimmedari humari."</p>
+                <p><b>- Abhishekk Ahirwar</b></p>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section style="padding: 50px 5%; text-align: center; background: #000;">
+    <h3 style="color: var(--gold);">Global Success Stories</h3>
+    <div style="max-width: 800px; margin: 20px auto; border: 2px solid var(--gold); border-radius: 15px; overflow: hidden;">
+        <video width="100%" autoplay muted loop style="display: block;">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+</section>
+
+<section id="reviews" style="padding: 80px 5%;">
+    <h2 style="text-align: center; color: var(--gold);">Client <span>Reviews</span></h2>
+    <div id="review-container" style="display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none;">
+        <div class="card" style="min-width: 300px; text-align: left;">
+            <div style="color: gold;">⭐⭐⭐⭐⭐</div>
+            <p>"Mera Italy ka work permit sirf 45 days mein aa gaya. Best service!"</p>
+            <b>- Rahul Sharma</b>
+        </div>
+        <div class="card" style="min-width: 300px; text-align: left;">
+            <div style="color: gold;">⭐⭐⭐⭐⭐</div>
+            <p>"Abhishek sir ka nature bahut acha hai. Proper guidance milti hai."</p>
+            <b>- Manoj Saini</b>
+        </div>
+        <div class="card" style="min-width: 300px; text-align: left;">
+            <div style="color: gold;">⭐⭐⭐⭐⭐</div>
+            <p>"Poland visa process is very smooth here. Trusted Agency."</p>
+            <b>- Vikram Singh</b>
+        </div>
+    </div>
+    
+    <div style="margin-top: 40px; background: var(--dark-card); padding: 30px; border-radius: 15px; text-align: center;">
+        <h4>Share Your Experience</h4>
+        <input type="text" id="revName" placeholder="Your Name" style="width: 250px; margin-bottom: 10px;"><br>
+        <textarea id="revText" placeholder="Write your review..." style="width: 80%; height: 80px; background: #000; color: white; border: 1px solid #334155; padding: 10px; border-radius: 10px;"></textarea><br>
+        <button class="btn" onclick="addReview()" style="margin-top: 15px;">Post Review</button>
+    </div>
+</section>
+
+<div style="position: fixed; left: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 9999;">
+    <a href="https://wa.me/918818852109" target="_blank" style="color: #25D366; font-size: 30px;"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.instagram.com/aaz.visa_export" target="_blank" style="color: #E1306C; font-size: 30px;"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/share/1CcquRUVkE/" target="_blank" style="color: #1877F2; font-size: 30px;"><i class="fab fa-facebook"></i></a>
+    <button onclick="toggleTheme()" style="background: var(--gold); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+</div>
+
+<footer style="background: #000; padding: 40px 5%; text-align: center; border-top: 1px solid var(--gold);">
+    <div style="margin-bottom: 20px;">
+        <a href="https://whatsapp.com/channel/0029VbBfeqS17EmlmkD2i13D" target="_blank" style="color: var(--gold); margin: 0 10px;">WhatsApp Channel</a> |
+        <a href="https://www.instagram.com/channel/AbYTVYyofPL9_Oyv/" target="_blank" style="color: var(--gold); margin: 0 10px;">Instagram Channel</a>
+    </div>
+    <p>Email: info.aazvisa@gmail.com | Phone: +91 8818852109</p>
+</footer>
+
+<script>
+    // Review Adding Logic
+    function addReview() {
+        const name = document.getElementById('revName').value;
+        const text = document.getElementById('revText').value;
+        if(name && text) {
+            const container = document.getElementById('review-container');
+            const newRev = `<div class="card" style="min-width: 300px; text-align: left;">
+                <div style="color: gold;">⭐⭐⭐⭐⭐</div>
+                <p>"${text}"</p>
+                <b>- ${name}</b>
+            </div>`;
+            container.innerHTML += newRev;
+            alert("Review added! Thank you.");
+            document.getElementById('revName').value = "";
+            document.getElementById('revText').value = "";
+        }
+    }
+
+    // Theme Toggle Logic
+    let isDark = true;
+    function toggleTheme() {
+        isDark = !isDark;
+        document.body.style.backgroundColor = isDark ? "#0b1120" : "#f3f4f6";
+        document.body.style.color = isDark ? "#ffffff" : "#111827";
+        document.getElementById('theme-icon').className = isDark ? "fas fa-moon" : "fas fa-sun";
+    }
+</script>
+
+<div id="ai-chat-box" style="position: fixed; right: 20px; bottom: 80px; width: 300px; background: #1e293b; border: 1px solid var(--gold); border-radius: 15px; display: none; flex-direction: column; z-index: 10000; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+    <div style="background: var(--gold); color: black; padding: 10px; border-radius: 15px 15px 0 0; font-weight: bold; display: flex; justify-content: space-between;">
+        <span>AAZ Smart Assistant</span>
+        <span onclick="toggleAIChat()" style="cursor: pointer;">&times;</span>
+    </div>
+    <div id="chat-content" style="padding: 15px; height: 200px; overflow-y: auto; font-size: 14px; color: #e2e8f0;">
+        <p><b>Assistant:</b> Namaste! AAZ Visa Export mein aapka swagat hai. Main aapki kaise madad kar sakta hoon?</p>
+    </div>
+    <div style="padding: 10px; border-top: 1px solid #334155; display: flex;">
+        <input type="text" id="userMsg" placeholder="Sawal puchein..." style="flex: 1; background: #0f172a; border: none; color: white; padding: 5px; border-radius: 5px;">
+        <button onclick="aiReply()" style="background: var(--gold); border: none; margin-left: 5px; border-radius: 5px; padding: 5px 10px; cursor: pointer;"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<div style="position: fixed; right: 20px; bottom: 20px; z-index: 10000;">
+    <button onclick="toggleAIChat()" style="background: #1e293b; border: 2px solid var(--gold); color: var(--gold); width: 50px; height: 50px; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+        <i class="fas fa-robot"></i>
+    </button>
+</div>
+
+<script>
+    function toggleAIChat() {
+        const box = document.getElementById('ai-chat-box');
+        box.style.display = box.style.display === 'none' ? 'flex' : 'none';
+    }
+
+    function aiReply() {
+        const userMsg = document.getElementById('userMsg').value;
+        const chatContent = document.getElementById('chat-content');
+        
+        if(userMsg) {
+            // User Message
+            chatContent.innerHTML += `<p style="text-align:right; color:var(--gold);"><b>Aap:</b> ${userMsg}</p>`;
+            
+            // AI Automatic Professional Reply
+            setTimeout(() => {
+                chatContent.innerHTML += `<p><b>Assistant:</b> Shukriya! Aapka sawal humari team tak pahunch gaya hai. <b>Abhishekk Ahirwar</b> sir ki team aapko agle 10-15 minute mein direct connect karegi. Tab tak aap humein WhatsApp par message kar sakte hain.</p>`;
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }, 1000);
+            
+            document.getElementById('userMsg').value = "";
+        }
+    }
+</script>
+
+<style>
+    @keyframes pulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    .fa-whatsapp {
+        animation: pulse 2s infinite;
+        border-radius: 50%;
+    }
+</style>
 
