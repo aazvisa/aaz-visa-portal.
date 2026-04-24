@@ -139,6 +139,115 @@
 
     <a href="admin.html" style="color: #444; text-decoration: none; font-size: 12px;">Staff Access</a>
 </footer>
+
+    <style>
+    /* Yeh code form ko sabse upar set kar dega */
+    .aaz-top-form-container {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        padding: 40px 20px;
+        border-bottom: 3px solid #daa520;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .aaz-main-form {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+    .aaz-input-field {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #0f172a;
+        color: white;
+        flex: 1;
+        min-width: 180px;
+        outline: none;
+    }
+    .aaz-input-field:focus { border-color: #daa520; }
+    .aaz-submit-btn {
+        background: #daa520;
+        color: black;
+        font-weight: bold;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .aaz-submit-btn:hover { background: white; transform: scale(1.05); }
+
+    /* Purane kharab section ko hide karne ke liye */
+    #apply, .upload-section { display: none !important; }
+</style>
+
+<div class="aaz-top-form-container" id="topApplyForm">
+    <h2 style="color:#daa520; margin-bottom:20px; font-family: sans-serif;">✅ Quick Apply - AAZ Visa Export</h2>
+    
+    <form action="https://formspree.io/f/xvgnpjpv" method="POST" class="aaz-main-form" id="masterForm">
+        <input type="text" name="Candidate_Name" placeholder="Full Name" required class="aaz-input-field">
+        
+        <input type="tel" name="WhatsApp_No" placeholder="WhatsApp Number" required class="aaz-input-field">
+        
+        <select name="Service_Type" id="serviceDropdown" required class="aaz-input-field">
+            <option value="">Select Service</option>
+            <option value="Work Visa">Work Visa</option>
+            <option value="Study Visa">Study Visa</option>
+            <option value="Tourist Visa">Tourist Visa</option>
+            <option value="Flight Booking">Flight Booking</option>
+            <option value="Medical Service">Medical Service</option>
+        </select>
+        
+        <input type="text" name="Target_Country" placeholder="Target Country" required class="aaz-input-field">
+        
+        <button type="submit" class="aaz-submit-btn">Apply ✅</button>
+    </form>
+</div>
+
+<script>
+    // System to move form to the TOP of the page automatically
+    window.onload = function() {
+        var formSection = document.getElementById('topApplyForm');
+        document.body.prepend(formSection); // Yeh line form ko sabse upar fek degi
+
+        // Agar koi service card par click kare toh dropdown apne aap change ho jaye
+        document.querySelectorAll('.card button, .btn').forEach(btn => {
+            btn.onclick = function(e) {
+                e.preventDefault();
+                let serviceText = this.closest('.card')?.querySelector('h3, h4')?.innerText || "";
+                
+                // Dropdown mein service set karein
+                let dropdown = document.getElementById('serviceDropdown');
+                if(serviceText.toLowerCase().includes('work')) dropdown.value = "Work Visa";
+                else if(serviceText.toLowerCase().includes('study')) dropdown.value = "Study Visa";
+                else if(serviceText.toLowerCase().includes('flight')) dropdown.value = "Flight Booking";
+                else if(serviceText.toLowerCase().includes('medical')) dropdown.value = "Medical Service";
+                
+                // Scroll to Top smoothly
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            };
+        });
+    };
+
+    // Admin Panel Save
+    document.getElementById('masterForm').onsubmit = function() {
+        const entry = {
+            name: document.getElementsByName('Candidate_Name')[0].value,
+            phone: document.getElementsByName('WhatsApp_No')[0].value,
+            service: document.getElementById('serviceDropdown').value,
+            country: document.getElementsByName('Target_Country')[0].value,
+            date: new Date().toLocaleString()
+        };
+        let data = JSON.parse(localStorage.getItem('aaz_leads') || '[]');
+        data.push(entry);
+        localStorage.setItem('aaz_leads', JSON.stringify(data));
+    };
+</script>
+    
     <style>
     /* Purane kharab section ko hatane ke liye */
     #apply, .upload-section { display: none !important; }
