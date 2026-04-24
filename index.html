@@ -139,6 +139,87 @@
 
     <a href="admin.html" style="color: #444; text-decoration: none; font-size: 12px;">Staff Access</a>
 </footer>
+    <section id="new-apply-section" style="padding: 60px 20px; background: #0f172a; border-top: 3px solid #daa520;">
+    <div style="max-width: 1000px; margin: 0 auto; background: #1e293b; padding: 40px; border-radius: 30px; border: 1px solid rgba(218,165,32,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2 style="color: #daa520; font-size: 28px; margin-bottom: 10px; font-family: 'Poppins', sans-serif;">✅ Start Your Visa Process</h2>
+            <p style="color: #9ca3af;">Fill the form below to get a direct callback from our experts.</p>
+        </div>
+
+        <form action="https://formspree.io/f/xvgnpjpv" method="POST" id="aazMasterForm">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+                
+                <div class="input-group">
+                    <label style="color: #daa520; display: block; margin-bottom: 8px; font-size: 14px;">Full Name</label>
+                    <input type="text" name="Name" placeholder="Enter Full Name" required style="width: 100%; padding: 14px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 12px; outline: none; box-sizing: border-box;">
+                </div>
+
+                <div class="input-group">
+                    <label style="color: #daa520; display: block; margin-bottom: 8px; font-size: 14px;">WhatsApp Number</label>
+                    <input type="tel" name="WhatsApp" placeholder="+91 00000 00000" required style="width: 100%; padding: 14px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 12px; outline: none; box-sizing: border-box;">
+                </div>
+
+                <div class="input-group">
+                    <label style="color: #daa520; display: block; margin-bottom: 8px; font-size: 14px;">Gmail Address</label>
+                    <input type="email" name="Email" placeholder="example@gmail.com" required style="width: 100%; padding: 14px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 12px; outline: none; box-sizing: border-box;">
+                </div>
+
+                <div class="input-group">
+                    <label style="color: #daa520; display: block; margin-bottom: 8px; font-size: 14px;">Target Country</label>
+                    <input type="text" name="Country" placeholder="e.g. Poland, Italy, Canada" required style="width: 100%; padding: 14px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 12px; outline: none; box-sizing: border-box;">
+                </div>
+
+                <div class="input-group" style="grid-column: span 1;">
+                    <label style="color: #daa520; display: block; margin-bottom: 8px; font-size: 14px;">Select Service</label>
+                    <select name="Service" required style="width: 100%; padding: 14px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 12px; outline: none; cursor: pointer;">
+                        <option value="">Choose Service</option>
+                        <option>Work Visa</option>
+                        <option>Study Visa</option>
+                        <option>Tourist Visa</option>
+                        <option>Business Visa</option>
+                        <option>Medical Visa</option>
+                        <option>Flight Booking</option>
+                        <option>Hotel Booking</option>
+                        <option>Legal Consultancy</option>
+                        <option>Other Services</option>
+                    </select>
+                </div>
+
+                <div style="grid-column: span 1; align-self: end;">
+                    <button type="submit" style="width: 100%; padding: 15px; background: #daa520; border: none; color: black; font-weight: bold; border-radius: 12px; cursor: pointer; font-size: 16px; text-transform: uppercase; transition: 0.3s; box-shadow: 0 10px 20px rgba(218,165,32,0.2);">
+                        Apply Now ✅
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+    // Admin Panel Saving Logic
+    document.getElementById('aazMasterForm').onsubmit = function() {
+        const entry = {
+            name: document.getElementsByName('Name')[0].value,
+            phone: document.getElementsByName('WhatsApp')[0].value,
+            email: document.getElementsByName('Email')[0].value,
+            country: document.getElementsByName('Country')[0].value,
+            service: document.getElementsByName('Service')[0].value,
+            date: new Date().toLocaleString()
+        };
+        let data = JSON.parse(localStorage.getItem('aaz_leads') || '[]');
+        data.push(entry);
+        localStorage.setItem('aaz_leads', JSON.stringify(data));
+        alert("Shukriya! Form submit ho gaya hai. Hum aapko jald call karenge.");
+    };
+
+    // Purane kharab sections ko hide karne ke liye
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const oldSection = document.querySelector('#apply, .upload-section');
+        if(oldSection) oldSection.style.display = 'none';
+    });
+</script>
     
 </body>
 </html>
