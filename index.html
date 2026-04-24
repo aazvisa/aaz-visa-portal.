@@ -200,6 +200,10 @@
             <option value="Tourist Visa">Tourist Visa</option>
             <option value="Flight Booking">Flight Booking</option>
             <option value="Medical Service">Medical Service</option>
+            <option value="business visa">business visa</option>
+            <option value="VFS appointment">VFS appointment</option>
+            <option value="holiday package">holiday package</option>
+            <option value="passport and CV">passport and CV</option>
         </select>
         
         <input type="text" name="Target_Country" placeholder="Target Country" required class="aaz-input-field">
@@ -246,105 +250,6 @@
         data.push(entry);
         localStorage.setItem('aaz_leads', JSON.stringify(data));
     };
-</script>
-    
-    <style>
-    /* Purane kharab section ko hatane ke liye */
-    #apply, .upload-section { display: none !important; }
-
-    /* Naya Professional Apply Button Section */
-    .aaz-apply-now-box {
-        text-align: center;
-        padding: 50px 20px;
-        background: #0f172a;
-        border-top: 2px solid #daa520;
-    }
-    .main-apply-btn {
-        background: #daa520;
-        color: black;
-        padding: 18px 40px;
-        font-size: 20px;
-        font-weight: bold;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        box-shadow: 0 0 20px rgba(218,165,32,0.4);
-        transition: 0.3s;
-    }
-    .main-apply-btn:hover { transform: scale(1.05); background: white; }
-
-    /* Modal Popup Setup */
-    .aaz-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999999; justify-content:center; align-items:center; backdrop-filter: blur(8px); }
-    .aaz-modal-content { background:#111827; width:90%; max-width:450px; padding:30px; border-radius:20px; border:2px solid #daa520; position:relative; }
-    .aaz-input { width:100%; padding:12px; margin-bottom:12px; background:#1f2937; border:1px solid #374151; color:white; border-radius:10px; outline:none; box-sizing: border-box; }
-</style>
-
-<div class="aaz-apply-now-box">
-    <h2 style="color:white; margin-bottom:20px;">Ready to Start Your Journey?</h2>
-    <button class="main-apply-btn" onclick="openAaz('General Application')">
-        <i class="fas fa-paper-plane"></i> APPLY NOW FOR VISA
-    </button>
-</div>
-
-<div id="aazModal" class="aaz-modal">
-    <div class="aaz-modal-content">
-        <span onclick="closeAaz()" style="position:absolute; top:10px; right:20px; color:#daa520; font-size:30px; cursor:pointer;">&times;</span>
-        <h2 id="aazTitle" style="color:#daa520; text-align:center; margin-bottom:20px;">Visa Service</h2>
-        
-        <form action="https://formspree.io/f/xvgnpjpv" method="POST" id="finalForm">
-            <input type="hidden" name="Service" id="aazService">
-            <input type="text" name="Full_Name" placeholder="Candidate Full Name" required class="aaz-input">
-            <input type="tel" name="WhatsApp_No" placeholder="WhatsApp Mobile Number" required class="aaz-input">
-            <input type="email" name="Gmail_ID" placeholder="Your Gmail Address" required class="aaz-input">
-            <input type="text" name="Target_Country" placeholder="Target Country (e.g. Italy, Poland)" required class="aaz-input">
-               <input type="tel" name="service type" placeholder="service type" required class="aaz-input">
-            <button type="submit" style="width:100%; padding:15px; background:#daa520; border:none; color:black; font-weight:bold; border-radius:10px; cursor:pointer;">SUBMIT DETAILS</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    function openAaz(service) {
-        document.getElementById('aazTitle').innerText = service;
-        document.getElementById('aazService').value = service;
-        document.getElementById('aazModal').style.display = 'flex';
-    }
-    function closeAaz() { document.getElementById('aazModal').style.display = 'none'; }
-
-    // Saare buttons ko fix karne ka logic
-    function fixButtons() {
-        document.querySelectorAll('button, .btn, .card a').forEach(btn => {
-            // Sirf wahi buttons jo form ke andar nahi hain
-            if(!btn.closest('form')) {
-                btn.removeAttribute('href');
-                btn.style.cursor = 'pointer';
-                btn.onclick = function(e) {
-                    e.preventDefault();
-                    let title = this.closest('.card')?.querySelector('h3, h4')?.innerText || "Visa Service";
-                    openAaz(title);
-                };
-            }
-        });
-    }
-
-    // Form submit par Admin Panel mein save karna
-    document.getElementById('finalForm').onsubmit = function() {
-        const entry = {
-            name: document.getElementsByName('Full_Name')[0].value,
-            phone: document.getElementsByName('WhatsApp_No')[0].value,
-            service: document.getElementById('aazService').value,
-            country: document.getElementsByName('Target_Country')[0].value,
-            date: new Date().toLocaleString(),
-            status: "New"
-        };
-        let data = JSON.parse(localStorage.getItem('aaz_leads') || '[]');
-        data.push(entry);
-        localStorage.setItem('aaz_leads', JSON.stringify(data));
-        alert("Success! Form submitted to Gmail & Admin Panel.");
-    };
-
-    window.onload = fixButtons;
-    setTimeout(fixButtons, 2000); // Double check for slow loading
 </script>
     
 </body>
