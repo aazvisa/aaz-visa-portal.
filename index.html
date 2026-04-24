@@ -139,116 +139,135 @@
 
     <a href="admin.html" style="color: #444; text-decoration: none; font-size: 12px;">Staff Access</a>
 </footer>
-
     <style>
-    /* Yeh code form ko sabse upar set kar dega */
-    .aaz-top-form-container {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        padding: 40px 20px;
-        border-bottom: 3px solid #daa520;
-        text-align: center;
+    /* 1. TOP WALLPAPER SLIDER STYLE */
+    #aaz-hero-slider {
+        position: relative;
         width: 100%;
-        box-sizing: border-box;
+        height: 500px; /* Aap ise apne hisab se chota-bada kar sakte hain */
+        overflow: hidden;
+        border-bottom: 4px solid #daa520;
     }
-    .aaz-main-form {
-        max-width: 900px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
+    .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
     }
-    .aaz-input-field {
+    .slide.active { opacity: 1; }
+
+    /* 2. TOP GMAIL FORM STYLE */
+    .top-apply-box {
+        position: relative;
+        z-index: 10;
+        background: rgba(15, 23, 42, 0.85); /* Transparent Dark */
+        padding: 30px 20px;
+        margin-top: -100px; /* Slider ke upar thoda overlap karega */
+        width: 90%;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        border: 2px solid #daa520;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .aaz-grid-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+    }
+    .aaz-input {
         padding: 12px;
-        border-radius: 8px;
-        border: 1px solid #334155;
         background: #0f172a;
+        border: 1px solid #334155;
         color: white;
-        flex: 1;
-        min-width: 180px;
+        border-radius: 10px;
         outline: none;
     }
-    .aaz-input-field:focus { border-color: #daa520; }
-    .aaz-submit-btn {
+    .aaz-input:focus { border-color: #daa520; }
+    .aaz-btn-submit {
         background: #daa520;
         color: black;
         font-weight: bold;
-        padding: 12px 30px;
         border: none;
-        border-radius: 8px;
+        padding: 12px;
+        border-radius: 10px;
         cursor: pointer;
+        text-transform: uppercase;
         transition: 0.3s;
     }
-    .aaz-submit-btn:hover { background: white; transform: scale(1.05); }
+    .aaz-btn-submit:hover { background: white; transform: scale(1.02); }
 
-    /* Purane kharab section ko hide karne ke liye */
+    /* Purane kharab apply section ko hide karein */
     #apply, .upload-section { display: none !important; }
 </style>
 
-<div class="aaz-top-form-container" id="topApplyForm">
-    <h2 style="color:#daa520; margin-bottom:20px; font-family: sans-serif;">✅ Quick Apply - AAZ Visa Export</h2>
+<div id="aaz-hero-slider">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1512813195391-7220c392863f?q=80&w=1600&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1515542672103-d84767ad2c58?q=80&w=1600&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop');"></div> </div>
+
+<div class="top-apply-box" id="mainEntryForm">
+    <h2 style="color:#daa520; text-align:center; margin-bottom:20px; font-size: 22px;">🚀 Quick Visa Application (Direct Gmail)</h2>
     
-    <form action="https://formspree.io/f/xvgnpjpv" method="POST" class="aaz-main-form" id="masterForm">
-        <input type="text" name="Candidate_Name" placeholder="Full Name" required class="aaz-input-field">
+    <form action="https://formspree.io/f/xvgnpjpv" method="POST" class="aaz-grid-form">
+        <input type="text" name="Candidate_Name" placeholder="Full Name" required class="aaz-input">
+        <input type="tel" name="WhatsApp_No" placeholder="WhatsApp No." required class="aaz-input">
+        <input type="email" name="Email_ID" placeholder="Gmail ID" required class="aaz-input">
+        <input type="text" name="Target_Country" placeholder="Target Country" required class="aaz-input">
         
-        <input type="tel" name="WhatsApp_No" placeholder="WhatsApp Number" required class="aaz-input-field">
-        
-        <select name="Service_Type" id="serviceDropdown" required class="aaz-input-field">
+        <select name="Service_Required" required class="aaz-input">
             <option value="">Select Service</option>
-            <option value="Work Visa">Work Visa</option>
-            <option value="Study Visa">Study Visa</option>
-            <option value="Tourist Visa">Tourist Visa</option>
-            <option value="Flight Booking">Flight Booking</option>
-            <option value="Medical Service">Medical Service</option>
-            <option value="business visa">business visa</option>
-            <option value="VFS appointment">VFS appointment</option>
-            <option value="holiday package">holiday package</option>
-            <option value="passport and CV">passport and CV</option>
+            <option>Work Visa</option>
+            <option>Study Visa</option>
+            <option>Tourist Visa</option>
+            <option>Business Visa</option>
+            <option>Medical Visa</option>
+            <option>Flight Booking</option>
+            <option>Hotel Booking</option>
+            <option>Insurance</option>
+            <option>Legal Consultancy</option>
+            <option>Other Services</option>
         </select>
         
-        <input type="text" name="Target_Country" placeholder="Target Country" required class="aaz-input-field">
-        
-        <button type="submit" class="aaz-submit-btn">Apply ✅</button>
+        <button type="submit" class="aaz-btn-submit">Apply Now ✅</button>
     </form>
 </div>
 
 <script>
-    // System to move form to the TOP of the page automatically
-    window.onload = function() {
-        var formSection = document.getElementById('topApplyForm');
-        document.body.prepend(formSection); // Yeh line form ko sabse upar fek degi
+    // 1. AUTO SLIDER LOGIC
+    let slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 5000); // Har 5 second mein wallpaper badlega
 
-        // Agar koi service card par click kare toh dropdown apne aap change ho jaye
-        document.querySelectorAll('.card button, .btn').forEach(btn => {
-            btn.onclick = function(e) {
-                e.preventDefault();
-                let serviceText = this.closest('.card')?.querySelector('h3, h4')?.innerText || "";
-                
-                // Dropdown mein service set karein
-                let dropdown = document.getElementById('serviceDropdown');
-                if(serviceText.toLowerCase().includes('work')) dropdown.value = "Work Visa";
-                else if(serviceText.toLowerCase().includes('study')) dropdown.value = "Study Visa";
-                else if(serviceText.toLowerCase().includes('flight')) dropdown.value = "Flight Booking";
-                else if(serviceText.toLowerCase().includes('medical')) dropdown.value = "Medical Service";
-                
-                // Scroll to Top smoothly
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            };
-        });
+    // 2. MOVE TO TOP LOGIC (Zabardasti Header ke niche layega)
+    window.onload = function() {
+        let slider = document.getElementById('aaz-hero-slider');
+        let form = document.getElementById('mainEntryForm');
+        // Isse ye poora section website ke start mein chala jayega
+        document.body.prepend(form);
+        document.body.prepend(slider);
     };
 
-    // Admin Panel Save
-    document.getElementById('masterForm').onsubmit = function() {
-        const entry = {
+    // 3. ADMIN PANEL BACKUP (Data browser mein bhi save hoga)
+    document.querySelector('.aaz-grid-form').onsubmit = function() {
+        const lead = {
             name: document.getElementsByName('Candidate_Name')[0].value,
             phone: document.getElementsByName('WhatsApp_No')[0].value,
-            service: document.getElementById('serviceDropdown').value,
+            service: document.getElementsByName('Service_Required')[0].value,
             country: document.getElementsByName('Target_Country')[0].value,
             date: new Date().toLocaleString()
         };
-        let data = JSON.parse(localStorage.getItem('aaz_leads') || '[]');
-        data.push(entry);
-        localStorage.setItem('aaz_leads', JSON.stringify(data));
+        let existingLeads = JSON.parse(localStorage.getItem('aaz_leads') || '[]');
+        existingLeads.push(lead);
+        localStorage.setItem('aaz_leads', JSON.stringify(existingLeads));
     };
 </script>
     
