@@ -139,6 +139,101 @@
 
     <a href="admin.html" style="color: #444; text-decoration: none; font-size: 12px;">Staff Access</a>
 </footer>
+    <div id="aazServiceModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; padding:20px; backdrop-filter: blur(10px);">
+    <div style="background:#111827; width:100%; max-width:480px; padding:30px; border-radius:25px; border:2px solid #daa520; position:relative;">
+        <span onclick="closeAazModal()" style="position:absolute; top:15px; right:20px; color:#daa520; font-size:35px; cursor:pointer;">&times;</span>
+        
+        <h2 id="aazTitle" style="color:#daa520; text-align:center; font-size:24px; margin-bottom:10px;">Service Name</h2>
+        <p style="text-align:center; color:#9ca3af; font-size:13px; margin-bottom:20px;">Fill details for Gmail & Admin Panel Save</p>
+
+        <form action="https://formspree.io/f/xvgnpjpv" method="POST" id="finalAazForm">
+            <input type="hidden" name="Service_Type" id="aazHiddenService">
+            
+            <input type="text" name="Full_Name" placeholder="Full Name" required style="width:100%; padding:12px; margin-bottom:12px; background:#1f2937; border:1px solid #374151; color:white; border-radius:10px;">
+            
+            <input type="tel" name="Mobile_No" placeholder="WhatsApp Number" required style="width:100%; padding:12px; margin-bottom:12px; background:#1f2937; border:1px solid #374151; color:white; border-radius:10px;">
+            
+            <input type="email" name="Email_ID" placeholder="Gmail Address" required style="width:100%; padding:12px; margin-bottom:12px; background:#1f2937; border:1px solid #374151; color:white; border-radius:10px;">
+
+            <input type="text" name="Target_Country" placeholder="Target Country (Poland, Italy etc.)" required style="width:100%; padding:12px; margin-bottom:12px; background:#1f2937; border:1px solid #374151; color:white; border-radius:10px;">
+
+            <div id="extraField" style="display:none; margin-bottom:15px;">
+                <input type="text" name="From_To_Location" placeholder="From (City) to (City)" style="width:100%; padding:12px; background:#1f2937; border:1px solid #daa520; color:white; border-radius:10px;">
+            </div>
+
+            <button type="submit" style="width:100%; padding:15px; background:#daa520; border:none; color:black; font-weight:bold; border-radius:10px; cursor:pointer; font-size:16px;">
+                Confirm Application
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+// 1. Force Click Override (Saare purane buttons ko naye form se jodna)
+function setupButtons() {
+    const allBtns = document.querySelectorAll('.card button, .btn, .service-card button, a.btn');
+    
+    allBtns.forEach(btn => {
+        // Purana link/behavior khatam karna
+        btn.removeAttribute('href');
+        btn.style.cursor = 'pointer';
+        
+        btn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Service ka naam nikalna card se
+            const card = btn.closest('.card') || btn.parentElement;
+            const serviceName = card.querySelector('h3, h4')?.innerText || "Visa Service";
+            
+            openAazForm(serviceName);
+        };
+    });
+}
+
+function openAazForm(name) {
+    document.getElementById('aazTitle').innerText = name;
+    document.getElementById('aazHiddenService').value = name;
+    
+    // Flight ya Medical ho toh extra field dikhao
+    const extra = document.getElementById('extraField');
+    if(name.toLowerCase().includes('flight') || name.toLowerCase().includes('medical')) {
+        extra.style.display = 'block';
+    } else {
+        extra.style.display = 'none';
+    }
+    
+    document.getElementById('aazServiceModal').style.display = 'flex';
+}
+
+function closeAazModal() {
+    document.getElementById('aazServiceModal').style.display = 'none';
+}
+
+// 2. Admin Panel Saving (LocalStorage)
+document.getElementById('finalAazForm').onsubmit = function() {
+    const applicant = {
+        name: document.getElementsByName('Full_Name')[0].value,
+        phone: document.getElementsByName('Mobile_No')[0].value,
+        email: document.getElementsByName('Email_ID')[0].value,
+        country: document.getElementsByName('Target_Country')[0].value,
+        service: document.getElementById('aazHiddenService').value,
+        date: new Date().toLocaleString(),
+        status: "New"
+    };
+
+    let list = JSON.parse(localStorage.getItem('aaz_applicants') || '[]');
+    list.push(applicant);
+    localStorage.setItem('aaz_applicants', JSON.stringify(list));
+    alert("Success! Form Gmail par bhej diya gaya hai aur Admin Panel mein save ho gaya hai.");
+};
+
+// Start Setup
+window.onload = setupButtons;
+// Backup setup agar koi cheez late load ho
+setTimeout(setupButtons, 2000);
+</script>
+    
     <div id="servicePopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; padding:20px; backdrop-filter: blur(10px);">
     <div style="background:#111827; width:100%; max-width:450px; padding:30px; border-radius:25px; border:2px solid #daa520; box-shadow: 0 0 50px rgba(218,165,32,0.4);">
         <span onclick="hidePopup()" style="position:absolute; top:20px; right:25px; color:#daa520; font-size:35px; cursor:pointer; font-weight:bold;">&times;</span>
