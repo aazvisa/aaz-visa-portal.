@@ -130,89 +130,99 @@
  </div>
 </section>
 
-<footer>
-    <p>&copy; 2024 AAZ VISA EXPORT. All rights reserved.</p>
-    <p>Tikamgarh, Madhya Pradesh, India</p>
-    <a href="admin.html" class="admin-secret">Staff Login</a>
 </footer>
     
 <footer style="text-align: center; padding: 20px; background: #000; border-top: 1px solid #daa520;">
-    <p>&copy; 2026 AAZ VISA EXPORT | Tikamgarh</p>
+    <p>&copy; 2024 AAZ VISA EXPORT | Tikamgarh Madhya Pradesh India</p>
     
     <a href="candidate-login.html" style="color: #daa520; text-decoration: none; margin-right: 20px;">Track Application Status</a>
 
     <a href="admin.html" style="color: #444; text-decoration: none; font-size: 12px;">Staff Access</a>
 </footer>
-    <div id="serviceModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:99999; justify-content:center; align-items:center; padding:20px; backdrop-filter: blur(5px);">
-    <div style="background:#1e293b; width:100%; max-width:450px; padding:30px; border-radius:20px; border:2px solid #daa520; position:relative; box-shadow: 0 0 30px rgba(218,165,32,0.3);">
-        <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:#daa520; font-size:30px; cursor:pointer;">&times;</span>
+    <div id="servicePopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; justify-content:center; align-items:center; padding:20px; backdrop-filter: blur(10px);">
+    <div style="background:#111827; width:100%; max-width:450px; padding:30px; border-radius:25px; border:2px solid #daa520; box-shadow: 0 0 50px rgba(218,165,32,0.4);">
+        <span onclick="hidePopup()" style="position:absolute; top:20px; right:25px; color:#daa520; font-size:35px; cursor:pointer; font-weight:bold;">&times;</span>
         
-        <h2 id="modalTitle" style="color:#daa520; margin-bottom:5px; text-align:center; font-family: 'Playfair Display', serif;">Service Name</h2>
-        <p style="text-align:center; color:#9ca3af; font-size:13px; margin-bottom:20px;">Fill details to get a call back from our experts.</p>
+        <h2 id="popTitle" style="color:#daa520; margin-bottom:10px; text-align:center; font-size:24px;">Service Name</h2>
+        <p style="text-align:center; color:#9ca3af; font-size:13px; margin-bottom:25px;">Please fill details. Our team will contact you soon.</p>
 
-        <form action="https://formspree.io/f/xvgnpjpv" method="POST" id="applicationForm">
-            <input type="hidden" name="Selected_Service" id="hiddenService">
+        <form action="https://formspree.io/f/xvgnpjpv" method="POST" id="smartForm">
+            <input type="hidden" name="Service_Type" id="popService">
             
-            <input type="text" name="Full_Name" placeholder="Your Name" required style="width:100%; padding:12px; margin-bottom:12px; background:#0f172a; border:1px solid #334155; color:white; border-radius:10px;">
+            <div style="margin-bottom:15px;">
+                <input type="text" name="Candidate_Name" placeholder="Full Name" required style="width:100%; padding:14px; background:#1f2937; border:1px solid #374151; color:white; border-radius:12px; outline:none;">
+            </div>
             
-            <input type="tel" name="WhatsApp_No" placeholder="WhatsApp Number" required style="width:100%; padding:12px; margin-bottom:12px; background:#0f172a; border:1px solid #334155; color:white; border-radius:10px;">
+            <div style="margin-bottom:15px;">
+                <input type="tel" name="WhatsApp_No" placeholder="WhatsApp Number" required style="width:100%; padding:14px; background:#1f2937; border:1px solid #374151; color:white; border-radius:12px; outline:none;">
+            </div>
             
-            <input type="email" name="Email" placeholder="Your Gmail" required style="width:100%; padding:12px; margin-bottom:12px; background:#0f172a; border:1px solid #334155; color:white; border-radius:10px;">
+            <div style="margin-bottom:15px;">
+                <input type="email" name="Email" placeholder="Email Address" required style="width:100%; padding:14px; background:#1f2937; border:1px solid #374151; color:white; border-radius:12px; outline:none;">
+            </div>
 
-            <input type="text" name="Destination" placeholder="Target Country (e.g. Poland, Italy)" required style="width:100%; padding:12px; margin-bottom:15px; background:#0f172a; border:1px solid #334155; color:white; border-radius:10px;">
+            <div style="margin-bottom:25px;">
+                <input type="text" name="Destination" placeholder="Target Country Name" required style="width:100%; padding:14px; background:#1f2937; border:1px solid #374151; color:white; border-radius:12px; outline:none;">
+            </div>
 
-            <button type="submit" style="width:100%; padding:15px; background:#daa520; border:none; color:black; font-weight:bold; border-radius:10px; cursor:pointer; font-size:16px; transition: 0.3s;">
-                Submit Application
+            <button type="submit" style="width:100%; padding:16px; background:#daa520; border:none; color:black; font-weight:bold; border-radius:12px; cursor:pointer; font-size:16px; text-transform:uppercase; letter-spacing:1px;">
+                Apply Now & Save
             </button>
         </form>
     </div>
 </div>
 
 <script>
-// Modal kholne aur Service name set karne ke liye
-function openServiceForm(serviceName) {
-    document.getElementById('modalTitle').innerText = serviceName;
-    document.getElementById('hiddenService').value = serviceName;
-    document.getElementById('serviceModal').style.display = 'flex';
+// 1. Popup dikhane ka function
+function showPopup(serviceName) {
+    document.getElementById('popTitle').innerText = serviceName;
+    document.getElementById('popService').value = serviceName;
+    document.getElementById('servicePopup').style.display = 'flex';
 }
 
-function closeModal() {
-    document.getElementById('serviceModal').style.display = 'none';
+// 2. Popup band karne ka function
+function hidePopup() {
+    document.getElementById('servicePopup').style.display = 'none';
 }
 
-// Admin Panel Save Logic (LocalStorage use kar rahe hain takki turant dikhe)
-document.getElementById('applicationForm').addEventListener('submit', function(e) {
-    const applicant = {
-        name: document.getElementsByName('Full_Name')[0].value,
+// 3. ADMIN SAVING LOGIC (Admin panel ke liye data save karna)
+document.getElementById('smartForm').onsubmit = function() {
+    const data = {
+        name: document.getElementsByName('Candidate_Name')[0].value,
         phone: document.getElementsByName('WhatsApp_No')[0].value,
-        email: document.getElementsByName('Email')[0].value,
-        service: document.getElementById('hiddenService').value,
+        service: document.getElementById('popService').value,
         country: document.getElementsByName('Destination')[0].value,
-        date: new Date().toLocaleString(),
+        date: new Date().toLocaleDateString(),
         id: "AAZ-" + Math.floor(1000 + Math.random() * 9000),
         status: "Pending"
     };
 
-    // Browser ki memory mein save karein (Admin panel ise yahan se uthayega)
-    let list = JSON.parse(localStorage.getItem('aaz_applicants') || '[]');
-    list.push(applicant);
-    localStorage.setItem('aaz_applicants', JSON.stringify(list));
-    
-    alert("Shukriya! Aapka form submit ho gaya hai. ID: " + applicant.id);
-});
+    let existing = JSON.parse(localStorage.getItem('aaz_applicants') || '[]');
+    existing.push(data);
+    localStorage.setItem('aaz_applicants', JSON.stringify(existing));
+    alert("Application Submitted! ID: " + data.id);
+};
 
-// Purane buttons ko popup se connect karne ke liye (Automated)
-document.addEventListener("DOMContentLoaded", function() {
-    const serviceCards = document.querySelectorAll('.card, .service-card');
-    serviceCards.forEach(card => {
-        const btn = card.querySelector('.btn, button');
-        const title = card.querySelector('h3, h4').innerText;
-        if(btn) {
-            btn.setAttribute('onclick', `openServiceForm('${title}')`);
-            btn.type = "button"; 
+// 4. PURANE BUTTONS KO NAYE POPUP SE CONNECT KARNA (Automatic Fix)
+window.onload = function() {
+    // Sabhi "Service Card" ke buttons ko target karna
+    const allButtons = document.querySelectorAll('.card button, .btn, .service-card button');
+    
+    allButtons.forEach(btn => {
+        // Sirf un buttons ko jo footer ya apply section ke bahar hain
+        if(!btn.closest('form')) {
+            const card = btn.closest('.card') || btn.parentElement;
+            const title = card.querySelector('h3, h4')?.innerText || "Visa Service";
+            
+            // Purani link hatana aur naya function lagana
+            btn.removeAttribute('href');
+            btn.onclick = function(e) {
+                e.preventDefault();
+                showPopup(title);
+            };
         }
     });
-});
+};
 </script>
     
 </body>
